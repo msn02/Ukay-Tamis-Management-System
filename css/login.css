@@ -1,0 +1,21 @@
+/* CSS classes arranged alphabetically */
+
+.form_style label, .form_style input {
+    color: gray;
+    font-size: 13px;
+}
+
+.form_style input:focus {
+    outline: normal;
+    box-shadow: none;
+}
+
+.green_btn button, .green_btn button:hover {
+    color: white;
+    font-weight: bold;
+    background: #96DA39;
+}
+
+.subtext p {
+    font-size: 16px;
+}

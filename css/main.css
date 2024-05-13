@@ -1,0 +1,45 @@
+/* CSS classes arranged alphabetically */
+
+body p {
+    font-size: 13px;
+    line-height: normal;
+}
+
+.bold_text {
+    font-weight: 900;
+}
+
+.dark_bg {
+    background: #242424;
+}
+
+.green_highlight {
+    color: #96DA39;
+}
+
+.light_bg {
+    background: #EEEEEE;
+}
+
+.nav_con {
+    width: 200px;
+    height: 100%;
+    position: fixed;
+}
+
+.nav_btn button, .nav_btn button:hover {
+    border: 1px solid white;
+    font-size: 12px;
+    background: #242424;
+}
+
+.nav-link[aria-current="page"] button{
+    background: #96DA39;
+	color: #3F5520;
+    font-weight: bold;
+    border: none;
+}
+
+.white_text {
+    color: white;
+}
