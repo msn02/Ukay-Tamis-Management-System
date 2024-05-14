@@ -76,6 +76,10 @@ button:focus, input:focus {
     border: none;
 }
 
+.search_input input {
+    font-size: 15px;
+}
+
 .white_text {
     color: white;
 }
