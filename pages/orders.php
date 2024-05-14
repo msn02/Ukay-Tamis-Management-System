@@ -15,17 +15,23 @@
         <h2 class="fw-bold">ORDERS</h2>
         <div class="row record_btn mt-3">
             <!-- options -->
-            <form class="" action="">
-                <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" checked>
-                <label class="btn btn-outline-dark px-3 py-2" for="items">SINGLE ITEMS</label>
+            <div class="col">
+                <form class="" action="">
+                    <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark px-3 py-2" for="items">SINGLE ITEMS</label>
 
-                <input type="radio" class="btn-check rounded-1" name="record_option" id="box" autocomplete="off">
-                <label class="btn btn-outline-dark px-3 py-2" for="box">BOXES</label>
-
-                <!-- <button class="px-4 py-2 btn btn-secondary border rounded-1" onclick="">SUBSCRIPTION</button> -->
-            </form>
+                    <input type="radio" class="btn-check rounded-1" name="record_option" id="box" autocomplete="off">
+                    <label class="btn btn-outline-dark px-3 py-2" for="box">BOXES</label>
+                </form>
+            </div>
+            <!-- searh bar -->   
+            <div class="col-8 ms-auto search_input">
+                <form action="" class="green_btn hstack">
+                    <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-secondary border-0 rounded-1" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-
         <!-- view records -->
         <div class="row mx-0 mt-4 p-2 card border-0 rounded-2">
             <table class="table shadow-md">
@@ -44,6 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- order details -->
                     <tr class="table_body align-middle">
                         <td scope="row" class="text-start">1234</td>
                         <td class="text-start">1234</td>
@@ -53,7 +60,7 @@
                         <td class="text-end">PHP 100</td>
                         <td class="text-end fw-bold">PHP 600</td>
                         <td class="text-center">GCash</td>
-                        <!-- status -->
+                        <!-- order status -->
                         <td class="text-center hstack gap-2 d-flex justify-content-center">
                             <form class="form_option">
                                 <select id="status" class="form-select rounded-1" disabled>
