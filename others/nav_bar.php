@@ -13,7 +13,7 @@
             <a class="nav-link" href="inventory.php"><button class="w-100 py-2 btn btn-dark rounded-1">INVENTORY</button></a>
         </li>
         <li class="nav-item nav_btn">
-            <a class="nav-link" href="activity_logs.php"><button class="w-100 py-2 btn btn-dark rounded-1">ACTIVITY LOGS</button></a>
+            <a class="nav-link" href="users.php"><button class="w-100 py-2 btn btn-dark rounded-1">USER ACCOUNTS</button></a>
         </li>
         <li class="nav-item nav_btn mt-auto">
             <a class="nav-link" href="index.php"><button class="w-100 py-2 btn btn-dark rounded-1">LOG OUT</button></a>
