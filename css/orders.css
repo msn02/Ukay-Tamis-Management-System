@@ -4,15 +4,6 @@
     margin-left: 200px;
 }
 
-/* .record_btn button, .record_btn button:hover {
-    font-size: 12px;
-}
-
-.record_btn button:hover {
-    background: #96DA39;
-    color: #3F5520;
-} */
-
 .record_btn input, .record_btn label {
     font-size: 12px;
 }
