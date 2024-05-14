@@ -9,12 +9,48 @@ body p {
     font-weight: 900;
 }
 
+button:focus, input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.center_align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .dark_bg {
     background: #242424;
 }
 
+.form_option select:focus {
+    outline: none;
+    box-shadow: none;
+    font-size: 13px;
+}
+
+.form_option option, .form_option select {
+    font-size: 13px;
+}
+
+.gray_btn button, .gray_btn button:hover {
+    font-size: 13px;
+}
+
+.green_btn button, .green_btn button:hover {
+    background: #96DA39;
+	color: #3F5520;
+    font-weight: 600;
+    font-size: 13px;
+}
+
 .green_highlight {
     color: #96DA39;
+}
+
+.green_highlight2 {
+    color: #3F5520;
 }
 
 .light_bg {
