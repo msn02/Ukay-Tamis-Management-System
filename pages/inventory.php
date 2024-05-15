@@ -29,7 +29,7 @@
             <div class="col-8 ms-auto search_input">
                 <form action="" class="green_btn hstack">
                     <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-secondary border-0 rounded-1" type="submit">Search</button>
+                    <button class="btn btn-secondary border-0 rounded-1" id="search_btn" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -37,6 +37,8 @@
         <div class="m-0 p-0" id="inventoryItemsDiv">
             <!-- single featured items -->
             <?php include '../others/inventory_items.php';?>
+
+            
         </div>
 
         <div class="m-0 p-0" id="inventoryBoxesDiv" style="display: none;">
