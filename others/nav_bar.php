@@ -4,7 +4,7 @@
         <h4 class="white_text fw-bold text-center pb-0 m-0"><span class="green_highlight">UKAY</span> TAMIS</h4>
         <p class="white_text text-center">MANAGEMENT SYSTEM</p>
         <li class="nav-item nav_btn">
-            <a class="nav-link" href="subscriptions.php"><button class="w-100 py-2 btn btn-dark rounded-1">SUBSCRIPTIONS</button></a>
+            <a class="nav-link" href="dashboard.php"><button class="w-100 py-2 btn btn-dark rounded-1">DASHBOARD</button></a>
         </li>
         <li class="nav-item nav_btn">
             <a class="nav-link" href="orders.php"><button class="px-5 py-2 btn btn-dark rounded-1">ORDERS</button></a>
