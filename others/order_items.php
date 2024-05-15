@@ -1,5 +1,8 @@
 <div class="row mx-0 mt-4 p-2 card border-0 rounded-2">
-    <table class="table shadow-md">
+    <!-- Existing Search input -->
+    <div class="mb-3">
+    </div>
+    <table id="order_items" class="table shadow-md">
         <thead class="">
             <tr class="table_head">
                 <th scope="col">Transaction ID</th>
@@ -10,41 +13,63 @@
                 <th scope="col">Shipping Fee</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Payment Method</th>
-                <th scope="col-1">Status</th>
+                <th scope="col">Status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <!-- order details -->
-            <tr class="table_body align-middle">
-                <td scope="row" class="text-start">1234</td>
-                <td class="text-start">1234</td>
-                <td class="text-center">1234</td>
-                <td class="text-center">Summer Fest</td>
-                <td class="text-center">1</td>
-                <td class="text-end">PHP 100</td>
-                <td class="text-end fw-bold">PHP 600</td>
-                <td class="text-center">GCash</td>
-                <!-- order status -->
-                <td class="text-center hstack gap-2 d-flex justify-content-center">
-                    <form class="form_option">
-                        <select id="status" class="form-select rounded-1" disabled>
-                            <option selected>Pending</option>
-                            <option value="1">Packed</option>
-                            <option value="2">Shipped</option>
-                        </select>
-                    </form>
-                </td>
-                <!-- actions -->
-                <td class="text-center">
-                    <div class="m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn">
-                        <!-- edit order status -->
-                        <button id="edit_button" class="btn btn-secondary rounded-1"><i class="bi bi-pencil-square"></i></button>
-                        <!-- delete order -->
-                        <button class="btn btn-danger rounded-1"><i class="bi bi-trash3-fill"></i></button>
-                    </div>
-                </td>
-            </tr>
+            <?php
+            include('server/connection.php');
+
+            // SQL query to fetch order items data
+            $sql = "SELECT op.transaction_id, t.user_id, op.item_id, op.item_name, op.style_box_quantity AS quantity, t.shipping_fee, op.item_price AS total_price, t.payment_method, op.style_box_id AS status
+                    FROM order_product op
+                    INNER JOIN transaction t ON op.transaction_id = t.transaction_id";
+
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Skip displaying the entire row if item_id is empty
+                    if (empty($row["item_id"])) {
+                        continue;
+                    }
+
+                    echo "<tr class='table_body align-middle'>";
+                    echo "<td scope='row'>" . $row["transaction_id"] . "</td>";
+                    echo "<td>" . $row["user_id"] . "</td>";
+                    echo "<td>" . $row["item_id"] . "</td>";
+                    echo "<td>" . $row["item_name"] . "</td>";
+                    echo "<td>" . $row["quantity"] . "</td>";
+                    echo "<td>" . $row["shipping_fee"] . "</td>";
+                    echo "<td>" . $row["total_price"] . "</td>";
+                    echo "<td>" . $row["payment_method"] . "</td>";
+                    // Order Status column
+                    echo "<td class='text-center hstack gap-2 d-flex justify-content-center'>";
+                    echo "<form class='form_option'>";
+                    echo "<select id='status' class='form-select rounded-1'>";
+                    echo "<option value='0' " . ($row["status"] == 0 ? "selected" : "") . ">Pending</option>";
+                    echo "<option value='1' " . ($row["status"] == 1 ? "selected" : "") . ">Packed</option>";
+                    echo "<option value='2' " . ($row["status"] == 2 ? "selected" : "") . ">Shipped</option>";
+                    echo "</select>";
+                    echo "</form>";
+                    echo "</td>";
+                    // Actions column
+                    echo "<td class='text-center'>";
+                    echo "<div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>";
+                    echo "<button id='edit_button' class='btn btn-secondary rounded-1'><i class='bi bi-pencil-square'></i></button>";
+                    echo "<button class='btn btn-danger rounded-1'><i class='bi bi-trash3-fill'></i></button>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='10'>No order items available</td></tr>";
+            }
+            $conn->close();
+            ?>
         </tbody>
     </table>
 </div>
+
+
