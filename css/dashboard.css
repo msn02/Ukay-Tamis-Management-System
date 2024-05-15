@@ -4,6 +4,14 @@
     margin-left: 200px;
 }
 
+.clock_elements {
+    font-size: 20px;
+}
+
+.header_num h1 {
+    font-size: 60px;
+}
+
 .record_btn input, .record_btn label {
     font-size: 12px;
 }
