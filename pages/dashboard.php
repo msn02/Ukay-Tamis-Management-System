@@ -15,7 +15,7 @@
     <div class="body_con p-5">
         <div class="row">
             <div class="col-5"><h2 class="fw-bold">ADMIN DASHBOARD</h2></div>
-            <div class="col-7 text-end d-flex justify-content-end align-items-center clock_container">
+            <div class="col-7 text-end d-flex justify-content-end align-items-center clock_container opacity-75">
                 <i class="bi bi-clock-fill me-3"></i>
                 <div class="clock_elements">
                     <span id="hour"></span>
