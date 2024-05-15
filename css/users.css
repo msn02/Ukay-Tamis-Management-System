@@ -1,0 +1,18 @@
+/* CSS classes arranged alphabetically */
+
+.body_con {
+    margin-left: 200px;
+}
+
+.record_btn input, .record_btn label {
+    font-size: 12px;
+}
+
+.table_body {
+    font-size: 13px;
+}
+
+.table_head {
+    font-size: 14px;
+    text-align: center;
+}
