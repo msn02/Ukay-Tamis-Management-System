@@ -25,10 +25,10 @@
                     <label class="btn btn-outline-dark px-3 py-2" for="box">BOXES</label>
                 </form>
             </div>
-            <!-- searh bar -->   
+         
             <div class="col-8 ms-auto search_input">
-                <form action="" class="green_btn hstack">
-                    <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" placeholder="Search" aria-label="Search">
+                <form action="" method="GET" class="green_btn hstack">
+                    <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-secondary border-0 rounded-1" id="search_btn" type="submit">Search</button>
                 </form>
             </div>
