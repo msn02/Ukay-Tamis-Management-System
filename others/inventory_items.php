@@ -98,7 +98,7 @@ if (isset($_GET['search'])) {
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "<tr class='table_body align-middle text-center'>";
-                    echo "<td><img class='lh-sm text-start' style='word-wrap: break-word;min-width: 160px;max-width: 160px;' src='../resources/".$row['item_img_url']."' alt='Item Image'></td>";
+                    echo "<td class='item_img'><img src='../resources/".$row['item_img_url']."' alt='Item Image'></td>";
                     echo "<td>" . $row['item_id'] . "</td>";
                     echo "<td>".$row['item_name']."</td>";
                     echo "<td>".$row['style']."</td>";
