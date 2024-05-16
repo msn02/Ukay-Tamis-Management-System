@@ -1,14 +1,5 @@
 <!-- box table -->
-<div class="row mx-0 mt-4 p-2 card border-0 rounded-2" id="boxTable">
-    <table class="table shadow-md">
-        <thead class="">
-            <tr class="table_head">
-                <th scope="col-1">Image</th>
-                <th scope="col-1">Box ID</th>
-                <th scope="col-1">Box Name</th>
-                <th scope="col-1">Style</th>
-                <th scope="col-1">Unit in Stock</th>
-                <th scope="col-1">Price</th><?php
+<?php
 // Include database connection
 include '../pages/server/connection.php';
 
