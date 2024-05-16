@@ -158,26 +158,39 @@ if ($style_exists) {
         </thead>
         <tbody>
             <!-- product details -->
-            <tr class="table_body align-middle text-center text_wrap">
-                <!-- product image -->
-                <td class="item_img">
-                    <img src="../resources/summer_fest2.png" class="rounded-2" alt="">
-                </td>
-                <td>1234</td>
-                <td class="lh-sm text-start" style="word-wrap: break-word;min-width: 160px;max-width: 160px;">Lorem ipsum dolor sit amet</td>
-                <td>Cottagecore</td>
-                <td>1</td>
-                <td class="fw-bold">PHP 250</td>
-                <!-- actions -->
-                <td class="text-center">
-                    <div class="m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn">
-                        <!-- edit order status -->
-                        <button id="edit_button" class="btn btn-secondary rounded-1" data-bs-toggle="modal" data-bs-target="#edit_boxes"><i class="bi bi-pencil-square"></i></button>
-                        <!-- delete order -->
-                        <button class="btn btn-danger rounded-1"><i class="bi bi-trash3-fill"></i></button>
-                    </div>
-                </td>
-            </tr>
+            <?php 
+            // Include database connection
+            include '../pages/server/connection.php';
+
+            $sql = "SELECT sb.*, s.* FROM style_box sb JOIN style s ON sb.style_id = s.style_id";
+            $result = $conn->query($sql);
+
+            // Display each item as a table row
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr class='table_body align-middle text-center'>";
+                    echo "<td><img class='lh-sm text-start' style='word-wrap: break-word;min-width: 160px;max-width: 160px;' src='../resources/".$row['style_img_url']."' alt='Item Image'></td>";
+                    echo "<td>" . $row['style_box_id'] . "</td>";
+                    echo "<td>".$row['style_id']."</td>";
+                    echo "<td>".$row['style']."</td>";
+                    echo "<td>".$row['stock_unit']."</td>";
+                    echo "<td>".$row['price']."</td>";
+                    //actions
+                    echo "             
+                    <td class='text-center'>
+                        <div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>
+                            <!-- edit order status -->
+                            <button class='btn btn-secondary rounded-1' data-bs-toggle='modal' data-bs-target='#edit_boxes'><i class='bi bi-pencil-square'></i></button>
+                            <!-- delete order -->
+                            <button class='btn btn-danger rounded-1'><i class='bi bi-trash3-fill'></i></button>
+                        </div>
+                    </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "0 results";
+            }
+            ?>
         </tbody>
     </table>
 </div>

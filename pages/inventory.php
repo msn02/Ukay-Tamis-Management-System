@@ -42,6 +42,8 @@
             <?php include '../others/inventory_items.php';?>
 
             
+
+            
         </div>
 
         <div class="m-0 p-0" id="inventoryBoxesDiv" style="display: none;">
