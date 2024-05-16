@@ -100,7 +100,7 @@ $result_items->close();
                 <div class="card border-0 px-4">
                     <h1 class="fw-bold"><?php echo $order_count; ?></h1>
                     <h5 class="fw-bold mb-1 p-0">Orders</h5>
-                    <p>Orders for Today</p>
+                    <p>Number of Orders made</p>
                 </div>
             </div>
             <div class="col-sm-3 p-2 text-center header_num m-0">
@@ -115,7 +115,7 @@ $result_items->close();
                 <div class="card px-4 border-0">
                     <h1 class="fw-bold"><?php echo $user_count; ?></h1>
                     <h5 class="fw-bold mb-1 p-0">Users</h5>
-                    <p>Platform Users</p>
+                    <p>Registered Users</p>
                 </div>
             </div>
         </div>
