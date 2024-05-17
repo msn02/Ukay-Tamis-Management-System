@@ -5,13 +5,12 @@
                 <th scope="col">Transaction ID</th>
                 <th scope="col">User ID</th>
                 <th scope="col">Box ID</th>
-                <th scope="col">Name</th>
+                <th scope="col">Box Name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Shipping Fee</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Payment Method</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
@@ -33,31 +32,27 @@
                     }
 
                     // Display the row if style_box_id is not empty
-                    echo "<tr class='table_body align-middle'>";
-                    echo "<td scope='row' class='text-start'>" . $row["transaction_id"] . "</td>";
-                    echo "<td class='text-start'>" . $row["user_id"] . "</td>";
-                    echo "<td class='text-center'>" . $row["style_box_id"] . "</td>";
-                    echo "<td class='text-center'>" . $row["style_box_name"] . "</td>";
-                    echo "<td class='text-center'>" . $row["style_box_quantity"] . "</td>";
-                    echo "<td class='text-end'>" . $row["shipping_fee"] . "</td>";
-                    echo "<td class='text-end fw-bold'>" . $row["style_box_price"] . "</td>";
-                    echo "<td class='text-center'>" . $row["payment_method"] . "</td>";
+                    echo "<tr class='table_body text-center align-middle'>";
+                    echo "<td scope='row'>" . $row["transaction_id"] . "</td>";
+                    echo "<td>" . $row["user_id"] . "</td>";
+                    echo "<td>" . $row["style_box_id"] . "</td>";
+                    echo "<td>" . $row["style_box_name"] . "</td>";
+                    echo "<td>" . $row["style_box_quantity"] . "</td>";
+                    echo "<td>" . $row["shipping_fee"] . "</td>";
+                    echo "<td>" . $row["style_box_price"] . "</td>";
+                    echo "<td>" . $row["payment_method"] . "</td>";
                     // Status column
                     echo "<td class='text-center hstack gap-2 d-flex justify-content-center'>";
-                    echo "<form class='form_option'>";
+                    echo "<form class='form_option hstack'>";
                     echo "<select id='status' class='form-select rounded-1'>";
                     echo "<option value='0'>Pending</option>";
                     echo "<option value='1'>Packed</option>";
                     echo "<option value='2'>Shipped</option>";
                     echo "</select>";
-                    echo "</form>";
-                    echo "</td>";
-                    // Actions column
-                    echo "<td class='text-center'>";
-                    echo "<div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>";
-                    echo "<button id='edit_button' class='btn btn-secondary rounded-1'><i class='bi bi-pencil-square'></i></button>";
-                    echo "<button class='btn btn-danger rounded-1'><i class='bi bi-trash3-fill'></i></button>";
+                    echo "<div class='gray_btn ms-1'>";
+                    echo "<button type='submit' class='btn btn-secondary'>Update</button>";
                     echo "</div>";
+                    echo "</form>";
                     echo "</td>";
                     echo "</tr>";
                 }
