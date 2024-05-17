@@ -119,7 +119,7 @@ $result_items->close();
                 </div>
             </div>
         </div>
-        <h5 class="fw-bold mt-4 opacity-75">USER ACTIVITY LOG</h5>
+        <h5 class="fw-bold mt-4 opacity-75">RECENT ACTIVITY LOG</h5>
         <!-- user logins -->
         <div class="row mx-0 mt-3 p-2 card border-0 rounded-2">
             <table class="table shadow-md">
@@ -148,8 +148,8 @@ $result_items->close();
                         // Loop through each row in the result
                         while($row = $result->fetch_assoc()) {
                             echo "<tr class='table_body align-middle'>";
-                            echo "<td scope='row' class='text-start'>" . $row["log_id"] . "</td>";
-                            echo "<td class='text-start'>" . $row["user_id"] . "</td>";
+                            echo "<td scope='row' class='text-center'>" . $row["log_id"] . "</td>";
+                            echo "<td class='text-center'>" . $row["user_id"] . "</td>";
                             echo "<td class='text-center'>" . $row["timestamp"] . "</td>";
                             echo "<td class='text-center'>" . $row["action"] . "</td>";
                             echo "</tr>";
