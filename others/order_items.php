@@ -13,8 +13,7 @@
                 <th scope="col">Shipping Fee</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Payment Method</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +34,7 @@
                         continue;
                     }
 
-                    echo "<tr class='table_body align-middle'>";
+                    echo "<tr class='table_body text-center align-middle'>";
                     echo "<td scope='row'>" . $row["transaction_id"] . "</td>";
                     echo "<td>" . $row["user_id"] . "</td>";
                     echo "<td>" . $row["item_id"] . "</td>";
@@ -46,20 +45,19 @@
                     echo "<td>" . $row["payment_method"] . "</td>";
                     // Order Status column
                     echo "<td class='text-center hstack gap-2 d-flex justify-content-center'>";
-                    echo "<form class='form_option'>";
+                    echo "<form class='form_option hstack'>";
                     echo "<select id='status' class='form-select rounded-1'>";
                     echo "<option value='0' " . ($row["status"] == 0 ? "selected" : "") . ">Pending</option>";
                     echo "<option value='1' " . ($row["status"] == 1 ? "selected" : "") . ">Packed</option>";
                     echo "<option value='2' " . ($row["status"] == 2 ? "selected" : "") . ">Shipped</option>";
                     echo "</select>";
+                    echo "<div class='gray_btn ms-1'>";
+                    echo "<button type='submit' class='btn btn-secondary'>Update</button>";
+                    echo "</div>";
                     echo "</form>";
                     echo "</td>";
                     // Actions column
                     echo "<td class='text-center'>";
-                    echo "<div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>";
-                    echo "<button id='edit_button' class='btn btn-secondary rounded-1'><i class='bi bi-pencil-square'></i></button>";
-                    echo "<button class='btn btn-danger rounded-1'><i class='bi bi-trash3-fill'></i></button>";
-                    echo "</div>";
                     echo "</td>";
                     echo "</tr>";
                 }
