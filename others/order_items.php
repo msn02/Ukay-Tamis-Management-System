@@ -1,7 +1,4 @@
 <div class="row mx-0 mt-4 p-2 card border-0 rounded-2">
-    <!-- Existing Search input -->
-    <div class="mb-3">
-    </div>
     <table id="order_items" class="table shadow-md">
         <thead class="">
             <tr class="table_head">
