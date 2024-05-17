@@ -29,7 +29,6 @@
                 <form action="" class="green_btn hstack">
                     <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" id="searchInput" type="search" placeholder="Search by ID's" aria-label="Search">
                     <button class="btn btn-secondary border-0 rounded-1" type="submit">Search</button>
-                    
                 </form>
             </div>
         </div>
