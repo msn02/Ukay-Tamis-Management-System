@@ -199,7 +199,7 @@ if (isset($_GET['search'])) {
                         </div>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer pe-0">
                     <div class="gray_btn">
                         <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
                     </div>
@@ -209,87 +209,11 @@ if (isset($_GET['search'])) {
                 </div>   
 
                 </form>
-                
             </div>
         </div>
     </div>
 </div>
-<script>
 
-</script>
-<!-- edit items in inventory -->
-<div class="modal fade" id="edit_items" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="items_lbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header modal_btn">
-                <h3 class="modal-title fs-5 fw-bold" id="items_lbl">Update Item</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form_style p-3 m-0" method="POST">
-                    <!-- item id and style -->
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
-                            <label for="item_id" class="form-label ms-1">Item ID</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" name="item_id" id="item_id" placeholder="item-XXXX">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="style" class="form-label ms-1">Style</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" name="style" id="style" placeholder="">
-                        </div>
-                    </div>
-                    <!-- item name -->
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="item_name" class="form-label ms-1">Item Name</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" name="item_name" id="item_name" placeholder="">
-                        </div>
-                    </div>
-                    <!-- size and color -->
-                    <div class="row mb-3">
-                        <div class="col-sm-6 form_option">
-                            <label for="size" class="form-label ms-1">Size</label>
-                            <select id="size" class="form-select" name = "size" aria-label="Default select example">
-                                <option selected>Select your size</option>
-                                <option value="1">Small</option>
-                                <option value="2">Medium</option>
-                                <option value="3">Large</option>
-                                <option value="4">Extra Large</option>
-                                <option value="5">XXL</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="color" class="form-label ms-1">Color</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" id="color" name="color" placeholder="">
-                        </div>
-                    </div>
-                    <!-- stocks and price -->
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
-                            <label for="unit_stock" class="form-label ms-1">Unit in Stock</label>
-                            <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="1" readonly>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="price" class="form-label ms-1">Price</label>
-                            <input type="number" class="form-control focus-ring focus-ring-light" id="price" placeholder="" name="price">
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                    <div class="gray_btn">
-                        <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="green_btn">
-                        <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Save Changes"></input>
-                    </div>
-                </div>   
-
-                </form>
-                
-            </div>
-        </div>
-    </div>
-</div>
 <script>
     document.getElementById('singleItemButton').addEventListener('click', function() {
         document.querySelector('.table_head').style.display = 'none';

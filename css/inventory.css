@@ -13,6 +13,11 @@ input {
     box-shadow: none;
 }
 
+.gray_btn input, .gray_btn input:hover{
+    font-size: 11px;
+    background: gray;
+}
+
 .item_img img {
     width: 80px;
     height: 80px;
