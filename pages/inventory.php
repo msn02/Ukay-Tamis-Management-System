@@ -192,7 +192,7 @@
                             <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
                         </div>
                         <div class="gray_btn">
-                            <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Add Item"></input>
+                            <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Add Box"></input>
                         </div>
                     </div>   
                     </form>
