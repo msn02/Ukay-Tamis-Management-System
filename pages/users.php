@@ -13,14 +13,11 @@
 
     <div class="body_con p-5">
         <h2 class="fw-bold">USER ACCOUNTS</h2>
-        <div class="row record_btn mt-3">
-            <!-- options -->
-            <div class="col">
-            
-            </div>
+        <div class="row mt-3">
             <!-- search bar -->   
-            <div class="col-8 ms-auto search_input">
+            <div class="col-8 ms-auto search_input green_btn hstack gap-1 record_btn">
                 <input id="searchInput" class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" placeholder="Search by User ID or Username" aria-label="Search">
+                <button class="btn btn-secondary border-0 rounded-1" id="search_btn" type="submit">Search</button>
             </div>
         </div>
 
@@ -71,7 +68,7 @@
                             echo "<div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>";
                             echo "<form method='POST' action='server/delete_user.php'>";
                             echo "<input type='hidden' name='user_id' value='" . $row["user_id"] . "'>";
-                            echo "<button type='submit' class='btn btn-danger rounded-1' name='delete_user'><i class='bi bi-trash3-fill'></i></button>";
+                            echo "<button type='submit' class='btn btn-danger rounded-1' name='delete_user'>Disable</button>";
                             echo "</form>";
                             echo "</div>";
                             echo "</td>";
@@ -113,8 +110,5 @@
         }
     });
 </script>
-
-
-
 </body>
 </html>

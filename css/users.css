@@ -4,6 +4,10 @@
     margin-left: 200px;
 }
 
+.gray_btn button, .gray_btn button:hover{
+    font-size: 11px;
+}
+
 .record_btn input, .record_btn label {
     font-size: 12px;
 }
