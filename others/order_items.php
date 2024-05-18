@@ -6,7 +6,6 @@
                 <th scope="col">User ID</th>
                 <th scope="col">Item ID</th>
                 <th scope="col">Item Name</th>
-                <th scope="col">Quantity</th>
                 <th scope="col">Shipping Fee</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Payment Method</th>
@@ -36,7 +35,6 @@
                     echo "<td>" . $row["user_id"] . "</td>";
                     echo "<td>" . $row["item_id"] . "</td>";
                     echo "<td>" . $row["item_name"] . "</td>";
-                    echo "<td>" . $row["quantity"] . "</td>";
                     echo "<td>" . $row["shipping_fee"] . "</td>";
                     echo "<td>" . $row["total_price"] . "</td>";
                     echo "<td>" . $row["payment_method"] . "</td>";
