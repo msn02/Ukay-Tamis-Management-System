@@ -94,39 +94,38 @@ if ($style_exists) {
                     echo "<button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>";
                     echo "</div>";
                     echo "<div class='modal-body'>";
-                    echo "<form class='form_style p-3 m-0' method='POST'>";
+                    echo "<form class='form_style mx-3 my-3' method='POST'>";
                     echo "<div class='row mb-3'>";
-                    echo "<div class='col-sm-6'>";
-                    echo "<label for='box_id' class='form-label ms-1'>Box ID</label>";
-                    echo "<input type='text' class='form-control focus-ring focus-ring-light' name='box_id' id='box_id' value='".$row['style_box_id']."' readonly>";
+                    echo "<div class='col-sm-6 form_style'>";
+                    echo "<label for='box_id' class='form-label'>Box ID</label>";
+                    echo "<input type='text' class='form-control focus-ring focus-ring-light' name='box_id' id='box_id' value='".$row['style_box_id']."' disabled>";
                     echo "</div>";
-                    echo "<div class='col-sm-6'>";
-                    echo "<label for='style' class='form-label ms-1'>Style</label>";
-                    echo "<input type='hidden' name='style' value='".$row['style']."'>";
-                    echo "<div>".$row['style']."</div>";
+                    echo "<div class='col-sm-6 form_style'>";
+                    echo "<label for='style' class='form-label'>Style</label>";
+                    echo "<input type='text' name='style' value='".$row['style']."' class='form-control focus-ring focus-ring-light'>";
                     echo "</div>";
                     echo "</div>";
                     echo "<div class='row mb-3'>";
-                    echo "<div class='col-sm-12'>";
-                    echo "<label for='unit_stock' class='form-label ms-1'>Unit in Stock</label>";
+                    echo "<div class='col-sm-6 form_style'>";
+                    echo "<label for='price' class='form-label'>Price</label>";
+                    echo "<input type='number' class='form-control focus-ring focus-ring-light' id='price' name='price' value='".$row['price']."'>";
+                    echo "</div>";
+                    echo "<div class='col-sm-6 form_style'>";
+                    echo "<label for='unit_stock' class='form-label'>Unit in Stock</label>";
                     echo "<input type='number' class='form-control focus-ring focus-ring-light' id='unit_stock' name='unit_stock' value='".$row['stock_unit']."'>";
                     echo "</div>";
                     echo "</div>";
                     echo "<div class='row mb-3'>";
-                    echo "<div class='col-sm-6'>";
-                    echo "<label for='price' class='form-label ms-1'>Price</label>";
-                    echo "<input type='number' class='form-control focus-ring focus-ring-light' id='price' name='price' value='".$row['price']."'>";
-                    echo "</div>";
-                    echo "<div class='col-sm-6'>";
-                    echo "<label for='img_url' class='form-label ms-1'>Image URL</label>";
+                    echo "<div class='col-sm-12 form_style'>";
+                    echo "<label for='img_url' class='form-label'>Image URL</label>";
                     echo "<input type='text' class='form-control focus-ring focus-ring-light' id='img_url' name='img_url' value='".$row['style_img_url']."'>";
                     echo "</div>";
                     echo "</div>";
-                    echo "<div class='modal-footer'>";
+                    echo "<div class='mt-4 hstack gap-2 d-flex justify-content-end'>";
                     echo "<div class='gray_btn'>";
                     echo "<button type='button' class='btn btn-secondary rounded-1 border-0' data-bs-dismiss='modal'>Cancel</button>";
                     echo "</div>";
-                    echo "<div class='green_btn'>";
+                    echo "<div class='gray_btn'>";
                     echo "<input type='submit' name='update_box' class='btn btn-dark rounded-1 border-0' value='Save Changes'>";
                     echo "</div>";
                     echo "</div>";
@@ -142,64 +141,4 @@ if ($style_exists) {
             ?>
         </tbody>
     </table>
-</div>
-
-<!-- edit items in inventory -->
-<div class="modal fade" id="edit_boxes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="boxes_lbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header modal_btn">
-                <h3 class="modal-title fs-5 fw-bold" id="boxes_lbl">Update Box</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form_style p-3 m-0">
-                    <!-- id and style -->
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
-                            <label for="item_id" class="form-label ms-1">Box ID</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" id="item_id" placeholder="item-XXXX">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="style" class="form-label ms-1">Style</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" id="style" placeholder="">
-                        </div>
-                    </div>
-                    <!-- box name -->
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="item_name" class="form-label ms-1">Box Name</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" id="item_name" placeholder="">
-                        </div>
-                    </div>
-                    <!-- stocks, and price -->
-                    <div class="row mb-3">
-                        <div class="col-sm-6">
-                            <label for="unit_stock" class="form-label ms-1">Unit in Stock</label>
-                            <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="price" class="form-label ms-1">Price</label>
-                            <input type="number" class="form-control focus-ring focus-ring-light" id="price" placeholder="">
-                        </div>
-                    </div>
-                    <!-- image URL -->
-                    <div class="row mb-3">
-                        <div class="col-sm-12">
-                            <label for="img_url" class="form-label ms-1">Image URL</label>
-                            <input type="text" class="form-control focus-ring focus-ring-light" id="img_url" placeholder="">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="gray_btn">
-                    <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
-                </div>
-                <div class="green_btn">
-                    <button type="button" class="btn btn-dark rounded-1 border-0">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
