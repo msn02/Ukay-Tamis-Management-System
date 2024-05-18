@@ -120,7 +120,7 @@ $result_items->close();
             </div>
         </div>
         <h5 class="fw-bold mt-4 opacity-75">RECENT ACTIVITY LOG</h5>
-        <!-- user logins -->
+        <!-- admin logins -->
         <div class="row mx-0 mt-3 p-2 card border-0 rounded-2">
             <table class="table shadow-md">
                 <thead class="">
@@ -138,7 +138,7 @@ $result_items->close();
                     include ('server/connection.php');
 
                     // SQL query to fetch user log data
-                    $sql = "SELECT * FROM user_logs";
+                    $sql = "SELECT * FROM user_logs ORDER BY timestamp DESC";
 
                     // Execute the query
                     $result = $conn->query($sql);
