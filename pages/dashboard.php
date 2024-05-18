@@ -95,7 +95,7 @@ $result_items->close();
             </div>
         </div>
         <!-- basic stats -->
-        <div class="row mx-0 mt-3 p-4 card border-0 rounded-2 hstack gap-1 d-flex justify-content-center">
+        <div class="row mx-0 mt-3 p-4 card border-0 rounded-2 hstack d-flex justify-content-center">
             <div class="col-sm-3 p-2 text-center header_num m-0">
                 <div class="card border-0 px-4">
                     <h1 class="fw-bold"><?php echo $order_count; ?></h1>
@@ -106,7 +106,14 @@ $result_items->close();
             <div class="col-sm-3 p-2 text-center header_num m-0">
                 <div class="card px-4 border-0">
                     <h1 class="fw-bold"><?php echo $item_count; ?></h1>
-                    <h5 class="fw-bold mb-1 p-0">Products</h5>
+                    <h5 class="fw-bold mb-1 p-0">Single Items</h5>
+                    <p>Available in Inventory</p>
+                </div>
+            </div>
+            <div class="col-sm-3 p-2 text-center header_num m-0">
+                <div class="card px-4 border-0">
+                    <h1 class="fw-bold"><?php echo $item_count; ?></h1>
+                    <h5 class="fw-bold mb-1 p-0">Boxes</h5>
                     <p>Available in Inventory</p>
                 </div>
             </div>
