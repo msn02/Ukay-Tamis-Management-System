@@ -65,8 +65,8 @@ if (isset($_POST['update_item'])) {
 <?php
 include '../pages/server/connection.php';
 
-if (isset($_GET['search'])) {
-    $search_term = $_GET['search'];
+if (isset($_GET['search_item'])) {
+    $search_term = $_GET['search_item'];
     $stmt = $conn->prepare("SELECT * FROM item WHERE item_name LIKE ?");
     $like_term = "%" . $search_term . "%";
     $stmt->bind_param("s", $like_term);
@@ -191,7 +191,7 @@ if (isset($_GET['search'])) {
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <label for="unit_stock" class="form-label ms-1">Unit in Stock</label>
-                            <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="1" readonly>
+                            <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="1" disabled>
                         </div>
                         <div class="col-sm-6">
                             <label for="price" class="form-label ms-1">Price</label>
@@ -199,27 +199,16 @@ if (isset($_GET['search'])) {
                         </div>
                     </div>
 
-                    <div class="modal-footer pe-0">
-                    <div class="gray_btn">
-                        <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="green_btn">
-                        <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Save Changes"></input>
-                    </div>
-                </div>   
-
+                    <div class="pe-0 hstack d-flex justify-content-end gap-2 mt-4">
+                        <div class="gray_btn">
+                            <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="gray_btn">
+                            <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Save Changes"></input>
+                        </div>
+                    </div>   
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    document.getElementById('singleItemButton').addEventListener('click', function() {
-        document.querySelector('.table_head').style.display = 'none';
-    });
-
-    document.getElementById('boxesButton').addEventListener('click', function() {
-        document.querySelector('.table_head').style.display = 'none';
-    });
-</script>
