@@ -17,7 +17,7 @@
             <!-- options -->
             <div class="col">
                 <form class="" action="">
-                    <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" value="order_items" checked>
+                    <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" value="order_items" >
                     <label class="btn btn-outline-dark px-3 py-2" for="items">SINGLE ITEMS</label>
 
                     <input type="radio" class="btn-check rounded-1" name="record_option" id="box" autocomplete="off" value="order_boxes">
@@ -28,8 +28,7 @@
             <div class="col-8 ms-auto search_input">
                 <form action="" class="green_btn hstack">
                     <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" id="searchInput" type="search" placeholder="Search by ID's" aria-label="Search">
-                    <button class="btn btn-secondary border-0 rounded-1" type="submit">Search</button>
-                    
+                    <button class="btn btn-secondary border-0 rounded-1" type="submit">Search</button>           
                 </form>
             </div>
         </div>

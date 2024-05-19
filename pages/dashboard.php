@@ -5,7 +5,7 @@ include ('server/connection.php');
 // Initialize user count
 $user_count = 0;
 
-// SQL query to fetch the count of rows in the "users" table
+// SQL query to fetch the count of rows in the "user" table
 $sql = "SELECT COUNT(*) AS user_count FROM user";
 
 // Execute the query
@@ -19,11 +19,8 @@ if ($result && $result->num_rows > 0) {
     $user_count = $row['user_count'];
 }
 
-// Close the database connection
-$conn->close();
-
-// Include database connection
-include ('server/connection.php');
+// Close the result set
+$result->close();
 
 // SQL query to count the number of orders
 $sql_orders = "SELECT COUNT(*) as order_count FROM order_product";
@@ -62,8 +59,29 @@ if ($result_items->num_rows > 0) {
 
 // Close the result set
 $result_items->close();
-?>
 
+// SQL query to count the number of style boxes
+$sql_boxes = "SELECT COUNT(*) as box_count FROM style_box";
+
+// Execute the query
+$result_boxes = $conn->query($sql_boxes);
+
+// Check if there are any rows in the result
+if ($result_boxes->num_rows > 0) {
+    // Fetch the row
+    $row_boxes = $result_boxes->fetch_assoc();
+    // Get the number of style boxes
+    $box_count = $row_boxes['box_count'];
+} else {
+    $box_count = 0;
+}
+
+// Close the result set
+$result_boxes->close();
+
+// Close the database connection
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +130,7 @@ $result_items->close();
             </div>
             <div class="col-sm-3 p-2 text-center header_num m-0">
                 <div class="card px-4 border-0">
-                    <h1 class="fw-bold"><?php echo $item_count; ?></h1>
+                    <h1 class="fw-bold"><?php echo $box_count; ?></h1>
                     <h5 class="fw-bold mb-1 p-0">Boxes</h5>
                     <p>Available in Inventory</p>
                 </div>

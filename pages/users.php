@@ -34,6 +34,7 @@
                         <th scope="col">Phone Number</th>
                         <th scope="col">Address</th>
                         <th scope="col">Registration Date</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,6 +43,16 @@
                     <?php
                     // Include database connection
                     include ('server/connection.php');
+
+                    // Check if the change_status POST request was made
+                    if (isset($_POST['change_status'])) {
+                        $user_id = $_POST['user_id'];
+                        $current_status = $_POST['current_status'];
+                        // Toggle the status of the user
+                        $new_status = $current_status === 'active' ? 'inactive' : 'active';
+                        $sql_update_status = "UPDATE user SET status='$new_status' WHERE user_id='$user_id'";
+                        $conn->query($sql_update_status);
+                    }
 
                     // SQL query to fetch user data
                     $sql = "SELECT * FROM user";
@@ -53,6 +64,10 @@
                     if ($result->num_rows > 0) {
                         // Loop through each row in the result
                         while($row = $result->fetch_assoc()) {
+                            $status = $row["status"];
+                            $button_label = $status === 'active' ? 'Disable' : 'Enable';
+                            $button_class = $status === 'active' ? 'btn-danger' : 'btn-success';
+
                             echo "<tr class='table_body align-middle text-center'>";
                             echo "<td scope='row'>" . $row["user_id"] . "</td>";
                             echo "<td>" . $row["username"] . "</td>";
@@ -63,12 +78,14 @@
                             echo "<td>" . $row["phone_number"] . "</td>";
                             echo "<td>" . $row["address"] . "</td>";
                             echo "<td style='word-wrap: break-word;min-width: 160px;max-width: 160px;'>" . $row["registration_date"] . "</td>";
-                            // Actions column with delete button
+                            echo "<td>" . $row["status"] . "</td>";
+                            // Actions column with enable/disable button
                             echo "<td>";
                             echo "<div class='m-0 p-0 hstack gap-2 d-flex justify-content-center gray_btn'>";
-                            echo "<form method='POST' action='server/delete_user.php'>";
+                            echo "<form method='POST' action='users.php'>";
                             echo "<input type='hidden' name='user_id' value='" . $row["user_id"] . "'>";
-                            echo "<button type='submit' class='btn btn-danger rounded-1' name='delete_user'>Disable</button>";
+                            echo "<input type='hidden' name='current_status' value='" . $row["status"] . "'>";
+                            echo "<button type='submit' class='btn $button_class rounded-1' name='change_status'>$button_label</button>";
                             echo "</form>";
                             echo "</div>";
                             echo "</td>";
@@ -76,7 +93,7 @@
                         }
                     } else {
                         // If there are no rows in the result
-                        echo "<tr><td colspan='10'>No user accounts available</td></tr>";
+                        echo "<tr><td colspan='11'>No user accounts available</td></tr>";
                     }
                     // Close the database connection
                     $conn->close();
@@ -109,6 +126,6 @@
             }
         }
     });
-</script>
+    </script>
 </body>
 </html>

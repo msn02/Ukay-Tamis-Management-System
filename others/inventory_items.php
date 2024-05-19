@@ -1,6 +1,6 @@
 <?php
- include '../pages/server/connection.php';
-
+include '../pages/server/connection.php';
+// Edit Item
 if (isset($_POST['update_item'])) {
     // Code to execute when edit button is clicked
     $item_id = $_POST['item_id'];
@@ -19,45 +19,51 @@ if (isset($_POST['update_item'])) {
        echo "Error on Post";
     }   
 }
-
 ?>
 
 <?php
+// Delete Item
+    if(isset($_POST['delete_item'])) {
+        $delete_item_id = $_POST['delete_item_id'];
+    
+        // Delete the related records in the order_product table
+        $sql = "DELETE FROM order_product WHERE item_id = '$delete_item_id'";
+        $conn->query($sql);
+    
+        // Delete the item
+        $sql = "DELETE FROM item WHERE item_id = '$delete_item_id'";
+        $conn->query($sql);
+        exit();
+    }
+?>
+
+<?php
+// Include the connection file if it's not already included
 include '../pages/server/connection.php';
 
-if (isset($_GET['search'])) {
-    $search_term = $_GET['search'];
-    $stmt = $conn->prepare("SELECT * FROM item WHERE item_name LIKE ?");
-    $like_term = "%" . $search_term . "%";
-    $stmt->bind_param("s", $like_term);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    $sql = "SELECT * FROM item";
-    $result = $conn->query($sql);
-}
-?>
-
-<?php
- include '../pages/server/connection.php';
-
-if (isset($_POST['update_item'])) {
-    // Code to execute when edit button is clicked
-    $item_id = $_POST['item_id'];
+// Check if the form for adding an item is submitted
+if (isset($_POST['add_item'])) {
+    // Extract the form data
     $item_name = $_POST['item_name'];
     $color = $_POST['color'];
     $size = $_POST['size'];
     $price = $_POST['price'];
     $style = $_POST['style'];
 
-    if ($item_id && $item_name && $color && $size && $price && $style) {
-    // Perform SQL update query based on the item_id
-        $sql = "UPDATE item SET item_name = '$item_name', color = '$color', size = '$size', price = '$price', style = '$style' WHERE item_id = '$item_id'";
+    // Validate the form data
+    if ($item_name && $color && $size && $price && $style) {
+        // Perform SQL insert query to add the item
+        $sql = "INSERT INTO item (item_name, color, size, price, style) 
+                VALUES ('$item_name', '$color', '$size', '$price', '$style')";
         // Execute the SQL query
-        $conn->query($sql);
+        if ($conn->query($sql) === TRUE) {
+            echo "";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-       echo "Error on Post";
-    }   
+        echo "Error on Post";
+    }
 }
 
 ?>
@@ -79,7 +85,7 @@ if (isset($_GET['search_item'])) {
 ?>
 <!-- single items -->
 <div class="row mx-0 mt-4 p-2 card border-0 rounded-2">
-    <table class="table shadow-md">
+    <table id="boxTable" class="table shadow-md">
         <thead class="">
             <tr class="table_head">
                 <th scope="col-1">Image</th>
@@ -93,7 +99,7 @@ if (isset($_GET['search_item'])) {
                 <th scope="col-2">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
             <?php 
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
@@ -125,21 +131,6 @@ if (isset($_GET['search_item'])) {
         </tbody>
     </table>
 </div>
-
-<?php
-    if(isset($_POST['delete_item'])) {
-        $delete_item_id = $_POST['delete_item_id'];
-    
-        // Delete the related records in the order_product table
-        $sql = "DELETE FROM order_product WHERE item_id = '$delete_item_id'";
-        $conn->query($sql);
-    
-        // Delete the item
-        $sql = "DELETE FROM item WHERE item_id = '$delete_item_id'";
-        $conn->query($sql);
-        exit();
-    }
-?>
 
 <!-- edit items in inventory -->
 <div class="modal fade" id="edit_items" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="items_lbl" aria-hidden="true">

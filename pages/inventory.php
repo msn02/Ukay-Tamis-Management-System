@@ -29,18 +29,16 @@
             <div class="col-sm-8 search_input d-flex justify-content-end">
                 <form action="" method="GET" class="green_btn hstack">
                     <div class="m-0 p-0 hstack" id="searchItem">
-                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" name="search_item" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring"id="searchInput" type="search" name="search_item" placeholder="Search" aria-label="Search">
                         <button class="btn btn-secondary border-0 rounded-1" id="search_item" type="submit">Search</button>
-                    </div>
-                    <div class="m-0 p-0 hstack" id="searchBox" style="display: none;">
-                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" type="search" name="search_box" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary border-0 rounded-1" id="search_box" type="submit">Search</button>
                     </div>
                     <button type="button" class="btn btn-dark ms-2 border-0 rounded-1" id="addItem" data-bs-toggle="modal" data-bs-target="#addItemModal">Add an Item</button>
                     <button type="button" class="btn btn-dark ms-2 border-0 rounded-1" id="addBoxes" style="display: none;" data-bs-toggle="modal" data-bs-target="#addBoxModal">Add a Box</button>
                 </form>
             </div>
         </div>
+        
+
         <!-- view inventory -->
         <div class="m-0 p-0" id="inventoryItemsDiv">
             <!-- single featured items -->
@@ -52,7 +50,7 @@
             <?php include '../others/inventory_boxes.php';?>
         </div>
 
-        <script>
+<script>
         // load table depending on the category
         $(document).ready(function() {
             $('input[name="record_option"]').change(function() {
@@ -60,23 +58,54 @@
                     // show single items 
                     $('#inventoryItemsDiv').show();
                     $('#inventoryBoxesDiv').hide();
-                    $('searchItem').show();
-                    $('searchBox').hide();
                     $('#addItem').show();
                     $('#addBoxes').hide();
                 } else {
                     // show boxes
                     $('#inventoryItemsDiv').hide();
                     $('#inventoryBoxesDiv').show();
-                    $('searchItem').hide();
-                    $('searchBox').show();
                     $('#addItem').hide();
                     $('#addBoxes').show();
                 }
             });
         });
+
+
+// JavaScript for filtering table based on search input
+document.getElementById("searchInput").addEventListener("input", function() {
+    var input, filter, table, tr, tdStyleBoxId, i, txtValueStyleBoxId;
+    input = this.value.toUpperCase();
+
+    // Get the specific table body
+    var tableBody = document.getElementById("boxTable");
+
+    // Get all rows inside the table body
+    tr = tableBody.getElementsByTagName("tr");
+
+    // Loop through all rows
+    for (i = 0; i < tr.length; i++) {
+        // Get the cell containing the style_box_id
+        tdStyleBoxId = tr[i].getElementsByTagName("td")[1]; // Assuming style_box_id is in the second column
+
+        if (tdStyleBoxId) {
+            // Get the text value of the style_box_id cell
+            txtValueStyleBoxId = tdStyleBoxId.textContent || tdStyleBoxId.innerText;
+
+            // Check if the input text matches the style_box_id
+            if (txtValueStyleBoxId.toUpperCase().indexOf(input) > -1) {
+                // If there's a match, display the row
+                tr[i].style.display = "";
+            } else {
+                // If there's no match, hide the row
+                tr[i].style.display = "none";
+            }
+        }
+    }
+});
+
         </script>
     </div>
+    
 
     <!-- modals -->
     <!-- add items in inventory -->
@@ -90,11 +119,7 @@
                 <div class="modal-body">
                     <form class="form_style p-3 m-0" method="POST">
                         <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <label for="item_id" class="form-label ms-1">Item ID</label>
-                                <input type="text" class="form-control focus-ring focus-ring-light" name="item_id" id="item_id" placeholder="item-XXXX">
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <label for="style" class="form-label ms-1">Style</label>
                                 <input type="text" class="form-control focus-ring focus-ring-light" name="style" id="style" placeholder="">
                             </div>
@@ -130,26 +155,28 @@
                                 <label for="unit_stock" class="form-label ms-1">Unit in Stock</label>
                                 <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="1" disabled>
                             </div>
-                            <div class="col-sm-6">
+                            <div
+                            class="col-sm-6">
                                 <label for="price" class="form-label ms-1">Price</label>
                                 <input type="number" class="form-control focus-ring focus-ring-light" id="price" placeholder="" name="price">
                             </div>
                         </div>
 
                         <div class="pe-0 hstack d-flex justify-content-end gap-2 mt-4">
-                        <div class="gray_btn">
-                            <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                        <div class="gray_btn">
-                            <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Add Item"></input>
-                        </div>
-                    </div>   
+                            <div class="gray_btn">
+                                <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="gray_btn">
+                                <input type="submit" name="add_item" class="btn btn-dark rounded-1 border-0" value="Add Item"></input>
+                            </div>
+                        </div>   
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
+    
     <!-- add box in inventory -->
     <div class="modal fade" id="addBoxModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addBoxLbl" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -161,11 +188,7 @@
                 <div class="modal-body">
                     <form class="form_style p-3 m-0" method="POST">
                         <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <label for="box_id" class="form-label ms-1">Box ID</label>
-                                <input type="text" class="form-control focus-ring focus-ring-light" name="item_id" id="box_id" placeholder="item-XXXX">
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <label for="box_style" class="form-label ms-1">Style</label>
                                 <input type="text" class="form-control focus-ring focus-ring-light" name="style" id="box_style" placeholder="">
                             </div>
@@ -192,7 +215,7 @@
                             <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
                         </div>
                         <div class="gray_btn">
-                            <input type="submit" name="update_item" class="btn btn-dark rounded-1 border-0" value="Add Box"></input>
+                            <input type="submit" name="add_box" class="btn btn-dark rounded-1 border-0" value="Add Box"></input>
                         </div>
                     </div>   
                     </form>
@@ -201,4 +224,7 @@
         </div>
     </div>
 </body>
+</body>
 </html>
+
+

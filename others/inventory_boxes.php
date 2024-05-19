@@ -3,22 +3,13 @@
 // Include database connection
 include '../pages/server/connection.php';
 
-
 if (isset($_POST['update_box'])) {
-// Retrieve form data
-$box_id = $_POST['box_id'];
-$style = $_POST['style']; // Remove this line
-$unit_stock = $_POST['unit_stock'];
-$price = $_POST['price'];
-$img_url = $_POST['img_url'];
+    // Retrieve form data
+    $box_id = $_POST['box_id'];
+    $unit_stock = $_POST['unit_stock'];
+    $price = $_POST['price'];
+    $img_url = $_POST['img_url'];
 
-// Check if the style exists in the style table
-$check_style_query = "SELECT COUNT(*) AS count FROM style WHERE style = '$style'";
-$result = $conn->query($check_style_query);
-$row = $result->fetch_assoc();
-$style_exists = $row['count'];
-
-if ($style_exists) {
     // Update the database record
     $sql = "UPDATE style_box 
         SET stock_unit = '$unit_stock', price = '$price' 
@@ -26,7 +17,7 @@ if ($style_exists) {
 
     if ($conn->query($sql) === TRUE) {
         // Update the style_img_url in the style table
-        $sql_update_style = "UPDATE style SET style_img_url = '$img_url' WHERE style = '$style'";
+        $sql_update_style = "UPDATE style SET style_img_url = '$img_url' WHERE style_id = (SELECT style_id FROM style_box WHERE style_box_id = '$box_id')";
         if ($conn->query($sql_update_style) === TRUE) {
             echo "";
         } else {
@@ -35,10 +26,6 @@ if ($style_exists) {
     } else {
         echo "Error updating record: " . $conn->error;
     }
-} else {
-    echo "Error: The specified style ('$style') does not exist in the style table.";
-}
-
 }
 
 ?>
@@ -56,7 +43,7 @@ if ($style_exists) {
                 <th scope="col-2">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="boxTable">
             <?php 
             // Include database connection
             include '../pages/server/connection.php';
@@ -98,11 +85,12 @@ if ($style_exists) {
                     echo "<div class='row mb-3'>";
                     echo "<div class='col-sm-6 form_style'>";
                     echo "<label for='box_id' class='form-label'>Box ID</label>";
-                    echo "<input type='text' class='form-control focus-ring focus-ring-light' name='box_id' id='box_id' value='".$row['style_box_id']."' disabled>";
+                    echo "<input type='text' class='form-control focus-ring focus-ring-light' name='box_id_display' id='box_id_display' value='".$row['style_box_id']."' disabled>";
+                    echo "<input type='hidden' name='box_id' id='box_id' value='".$row['style_box_id']."'>";
                     echo "</div>";
                     echo "<div class='col-sm-6 form_style'>";
                     echo "<label for='style' class='form-label'>Style</label>";
-                    echo "<input type='text' name='style' value='".$row['style']."' class='form-control focus-ring focus-ring-light'>";
+                    echo "<input type='text' name='style' value='".$row['style']."' class='form-control focus-ring focus-ring-light' disabled>";
                     echo "</div>";
                     echo "</div>";
                     echo "<div class='row mb-3'>";
@@ -141,4 +129,5 @@ if ($style_exists) {
             ?>
         </tbody>
     </table>
-</div>
+
+    
