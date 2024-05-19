@@ -1,4 +1,3 @@
-<!-- box table -->
 <?php
 // Include database connection
 include '../pages/server/connection.php';
@@ -12,8 +11,8 @@ if (isset($_POST['update_box'])) {
 
     // Update the database record
     $sql = "UPDATE style_box 
-        SET stock_unit = '$unit_stock', price = '$price' 
-        WHERE style_box_id = '$box_id'";
+            SET stock_unit = '$unit_stock', price = '$price' 
+            WHERE style_box_id = '$box_id'";
 
     if ($conn->query($sql) === TRUE) {
         // Update the style_img_url in the style table
@@ -28,9 +27,32 @@ if (isset($_POST['update_box'])) {
     }
 }
 
-?>
+if (isset($_POST['add_box'])) {
+    // Retrieve form data
+    $style = $_POST['style'];
+    $unit_stock = $_POST['unit_stock'];
+    $price = $_POST['price'];
+    $img_url = $_POST['img_url'];
 
-<!-- box table -->
+    // Insert the new box into the database
+    $sql = "INSERT INTO style_box (style_id, stock_unit, price) VALUES (
+        (SELECT style_id FROM style WHERE style = '$style'), '$unit_stock', '$price'
+    )";
+
+    if ($conn->query($sql) === TRUE) {
+        // Insert the new image URL into the style table
+        $sql_update_style = "UPDATE style SET style_img_url = '$img_url' WHERE style = '$style'";
+        if ($conn->query($sql_update_style) === TRUE) {
+        } else {
+            echo "Error updating style_img_url: " . $conn->error;
+        }
+    } else {
+        echo "Error adding new box: " . $conn->error;
+    }
+}
+
+?>
+<!-- Box Table -->
 <div class="row mx-0 mt-4 p-2 card border-0 rounded-2" id="boxTable">
     <table class="table shadow-md">
         <thead class="">
@@ -43,7 +65,7 @@ if (isset($_POST['update_box'])) {
                 <th scope="col-2">Actions</th>
             </tr>
         </thead>
-        <tbody id="boxTable">
+        <tbody id="boxTableBody">
             <?php 
             // Include database connection
             include '../pages/server/connection.php';
@@ -129,5 +151,63 @@ if (isset($_POST['update_box'])) {
             ?>
         </tbody>
     </table>
+</div>
 
-    
+<!-- JavaScript to filter the table -->
+<script>
+function filterTable() {
+    // Get the input field and table body
+    var input = document.getElementById("searchBox");
+    var filter = input.value.toUpperCase();
+    var tableBody = document.getElementById("boxTableBody");
+    var rows = tableBody.getElementsByTagName("tr");
+
+    // Loop through all table rows and hide those that don't match the search query
+    for (var i = 0; i < rows.length; i++) {
+        var td = rows[i].getElementsByTagName("td")[1];
+        if (td) {
+            var txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+}
+
+
+
+    document.querySelector("form[method='POST']").addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        var form = event.target;
+        var formData = new FormData(form);
+
+        // Send an AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '', true); // '' means submit to the same page
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Close the modal
+                var modal = document.getElementById('addBoxModal');
+                var modalInstance = bootstrap.Modal.getInstance(modal);
+                modalInstance.hide();
+
+                // Parse the response to get the new row data
+                var response = xhr.responseText;
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(response, 'text/html');
+                var newRow = doc.querySelector('#boxTableBody tr:last-child');
+
+                // Append the new row to the table body
+                document.querySelector('#boxTableBody').appendChild(newRow);
+            } else {
+                alert('Error adding box: ' + xhr.statusText);
+            }
+        };
+        xhr.send(formData);
+    });
+
+
+</script>

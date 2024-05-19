@@ -17,7 +17,7 @@
             <!-- options -->
             <div class="col">
                 <form class="" action="">
-                    <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" value="order_items" >
+                    <input type="radio" class="btn-check rounded-1" name="record_option" id="items" autocomplete="off" value="order_items" checked >
                     <label class="btn btn-outline-dark px-3 py-2" for="items">SINGLE ITEMS</label>
 
                     <input type="radio" class="btn-check rounded-1" name="record_option" id="box" autocomplete="off" value="order_boxes">

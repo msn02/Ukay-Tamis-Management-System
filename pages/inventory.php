@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +30,18 @@
             <div class="col-sm-8 search_input d-flex justify-content-end">
                 <form action="" method="GET" class="green_btn hstack">
                     <div class="m-0 p-0 hstack" id="searchItem">
-                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring"id="searchInput" type="search" name="search_item" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-secondary border-0 rounded-1" id="search_item" type="submit">Search</button>
+                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" id="searchInput" type="search" name="search_item" placeholder="Search by Item ID" aria-label="Search">
+                        <button class="btn btn-secondary border-0 rounded-1" id="search_item_btn" type="submit">Search</button>
+                    </div>
+                    <div class="m-0 p-0 hstack" id="searchBox" style="display: none;">
+                        <input class="form-control me-2 rounded-1 focus-ring-light focus-ring" id="searchBoxInput" type="text" onkeyup="filterTable()" placeholder="Search by Box ID">
+                        <button class="btn btn-secondary border-0 rounded-1" id="search_box_btn" type="submit">Search</button>
                     </div>
                     <button type="button" class="btn btn-dark ms-2 border-0 rounded-1" id="addItem" data-bs-toggle="modal" data-bs-target="#addItemModal">Add an Item</button>
                     <button type="button" class="btn btn-dark ms-2 border-0 rounded-1" id="addBoxes" style="display: none;" data-bs-toggle="modal" data-bs-target="#addBoxModal">Add a Box</button>
                 </form>
             </div>
         </div>
-        
 
         <!-- view inventory -->
         <div class="m-0 p-0" id="inventoryItemsDiv">
@@ -50,26 +54,29 @@
             <?php include '../others/inventory_boxes.php';?>
         </div>
 
-<script>
-        // load table depending on the category
-        $(document).ready(function() {
-            $('input[name="record_option"]').change(function() {
-                if ($(this).val() === 'inventory_items') {
-                    // show single items 
-                    $('#inventoryItemsDiv').show();
-                    $('#inventoryBoxesDiv').hide();
-                    $('#addItem').show();
-                    $('#addBoxes').hide();
-                } else {
-                    // show boxes
-                    $('#inventoryItemsDiv').hide();
-                    $('#inventoryBoxesDiv').show();
-                    $('#addItem').hide();
-                    $('#addBoxes').show();
-                }
+        <script>
+            // Load table depending on the category
+            $(document).ready(function() {
+                $('input[name="record_option"]').change(function() {
+                    if ($(this).val() === 'inventory_items') {
+                        // Show single items 
+                        $('#inventoryItemsDiv').show();
+                        $('#inventoryBoxesDiv').hide();
+                        $('#searchItem').show();
+                        $('#searchBox').hide();
+                        $('#addItem').show();
+                        $('#addBoxes').hide();
+                    } else {
+                        // Show boxes
+                        $('#inventoryItemsDiv').hide();
+                        $('#inventoryBoxesDiv').show();
+                        $('#searchItem').hide();
+                        $('#searchBox').show();
+                        $('#addItem').hide();
+                        $('#addBoxes').show();
+                    }
+                });
             });
-        });
-
 
 // JavaScript for filtering table based on search input
 document.getElementById("searchInput").addEventListener("input", function() {
@@ -102,10 +109,8 @@ document.getElementById("searchInput").addEventListener("input", function() {
         }
     }
 });
-
         </script>
     </div>
-    
 
     <!-- modals -->
     <!-- add items in inventory -->
@@ -135,7 +140,7 @@ document.getElementById("searchInput").addEventListener("input", function() {
                         <div class="row mb-3">
                             <div class="col-sm-6 form_option">
                                 <label for="size" class="form-label ms-1">Size</label>
-                                <select id="size" class="form-select" name = "size" aria-label="Default select example">
+                                <select id="size" class="form-select" name="size" aria-label="Default select example">
                                     <option selected>Select your size</option>
                                     <option value="1">Small</option>
                                     <option value="2">Medium</option>
@@ -155,8 +160,7 @@ document.getElementById("searchInput").addEventListener("input", function() {
                                 <label for="unit_stock" class="form-label ms-1">Unit in Stock</label>
                                 <input type="number" class="form-control focus-ring focus-ring-light" id="unit_stock" placeholder="1" disabled>
                             </div>
-                            <div
-                            class="col-sm-6">
+                            <div class="col-sm-6">
                                 <label for="price" class="form-label ms-1">Price</label>
                                 <input type="number" class="form-control focus-ring focus-ring-light" id="price" placeholder="" name="price">
                             </div>
@@ -176,8 +180,7 @@ document.getElementById("searchInput").addEventListener("input", function() {
         </div>
     </div>
 
-    
-    <!-- add box in inventory -->
+<!-- add box in inventory -->
     <div class="modal fade" id="addBoxModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addBoxLbl" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -211,20 +214,68 @@ document.getElementById("searchInput").addEventListener("input", function() {
                         </div>
 
                         <div class="pe-0 hstack d-flex justify-content-end gap-2 mt-4">
-                        <div class="gray_btn">
-                            <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
-                        </div>
-                        <div class="gray_btn">
-                            <input type="submit" name="add_box" class="btn btn-dark rounded-1 border-0" value="Add Box"></input>
-                        </div>
-                    </div>   
+                            <div class="gray_btn">
+                                <button type="button" class="btn btn-secondary rounded-1 border-0" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                            <div class="gray_btn">
+                                <input type="submit" name="add_box" class="btn btn-dark rounded-1 border-0" value="Add Box"></input>
+                            </div>
+                        </div>   
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </body>
-</body>
 </html>
+
+
+<script>
+    // Load table depending on the category
+    $(document).ready(function() {
+        $('input[name="record_option"]').change(function() {
+            if ($(this).val() === 'inventory_items') {
+                // Show single items 
+                $('#inventoryItemsDiv').show();
+                $('#inventoryBoxesDiv').hide();
+                $('#searchItem').show();
+                $('#searchBox').hide();
+                $('#addItem').show();
+                $('#addBoxes').hide();
+            } else {
+                // Show boxes
+                $('#inventoryItemsDiv').hide();
+                $('#inventoryBoxesDiv').show();
+                $('#searchItem').hide();
+                $('#searchBox').show();
+                $('#addItem').hide();
+                $('#addBoxes').show();
+            }
+        });
+    });
+
+    // JavaScript for filtering table based on search input
+    function filterTable() {
+        var input = document.getElementById("searchBoxInput");
+        var filter = input.value.toUpperCase();
+        var tableBody = document.getElementById("boxTableBody");
+        var rows = tableBody.getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var td = rows[i].getElementsByTagName("td")[1];
+            if (td) {
+                var txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Event listener for search input
+    document.getElementById("searchBoxInput").addEventListener("input", filterTable);
+</script>
 
 
