@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2024 at 09:35 AM
+-- Generation Time: May 19, 2024 at 12:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -68,9 +68,8 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `style_id`, `item_name`, `item_description`, `style`, `price`, `size`, `color`, `item_img_url`, `transaction_id`, `order_number`) VALUES
-('item-00015', 'style-0001', 'Vintage Floral Blouse', 'Featuring delicate flower patterns and a classic silhouette, this blouse is perfect for adding a touch of nostalgia to your wardrobe.', 'Cottagecore', 229.00, 'XS', 'Brown', 'dress.jpg', 69, 'ORD-20240512-0000202'),
-('item-00016', 'style-0001', 'Chunky Knit Sweater', 'Stay cozy and stylish in this chunky knit sweater. Made from soft and warm yarn, this sweater features a relaxed fit and a timeless cable knit design', 'Cottagecore', 339.00, 'M', 'Green', 'dress.jpg', 70, 'ORD-20240512-0000203'),
-('item-00017', 'style-0002', 'Leopard Sunglasses', 'Featuring a timeless lace-up design and a durable rubber sole, these sneakers are perfect for everyday wear. ', 'Coquette', 79.00, 'L', 'Multicolor', 'dress.jpg', 74, 'ORD-20240514-0000278');
+('item-00286', NULL, 'Vintage Floral ', NULL, 'Cottagecore', 123.00, 'XL', 'Brown', NULL, NULL, NULL),
+('item-00289', NULL, 'Vintage Floral ', NULL, 'Cottagecore', 123.00, 'XL', 'Brown', NULL, NULL, NULL);
 
 --
 -- Triggers `item`
@@ -132,9 +131,6 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `transaction_id`, `item_id`, `item_name`, `item_price`, `style_box_id`, `style_box_name`, `style_box_price`, `style_box_quantity`) VALUES
-(1, 47, 'item-00015', 'Vintage Floral Blouse', 229, NULL, NULL, NULL, NULL),
-(2, 49, 'item-00015', 'Vintage Floral Blouse', 229, NULL, NULL, NULL, NULL),
-(4, 49, 'item-00015', 'Vintage Floral Blouse', 229, NULL, NULL, NULL, NULL),
 (10, 49, NULL, NULL, NULL, 'box-000019', 'Cottagecore', 229, 0),
 (11, 50, NULL, NULL, NULL, 'box-000019', 'Cottagecore', 229, 1),
 (12, 51, NULL, NULL, NULL, 'box-000020', 'Coquette', 229, 3),
@@ -473,7 +469,25 @@ INSERT INTO `sequence` (`sequence_id`) VALUES
 (278),
 (279),
 (280),
-(281);
+(281),
+(282),
+(283),
+(284),
+(285),
+(286),
+(287),
+(288),
+(289),
+(290),
+(291),
+(292),
+(293),
+(294),
+(295),
+(296),
+(297),
+(298),
+(299);
 
 -- --------------------------------------------------------
 
@@ -493,11 +507,11 @@ CREATE TABLE `style` (
 --
 
 INSERT INTO `style` (`style_id`, `style`, `style_description`, `style_img_url`) VALUES
-('style-0001', 'Cottagecore', 'Embrace countryside charm with floral prints and rustic details.', 'cottagecore.jpg'),
+('style-0001', 'Cottagecore', 'Embrace countryside charm with floral prints and rustic details.', ''),
 ('style-0002', 'Coquette', 'Channel elegance and femininity with lace and delicate fabrics.', 'coquette.jpg'),
 ('style-0003', 'Gothic Lolita', ' Explore dark whimsy with Victorian-inspired dresses.', 'gothic_lolita.jpg'),
 ('style-0004', 'Streetwear', 'Make a statement with bold graphics and urban designs.', 'streetwear.jpg'),
-('style-0005', 'Y2K', 'Relive early 2000s nostalgia with shimmering metallic accents and playful, retro styles.', 'dress.jpg'),
+('style-0005', 'Y2K', 'Relive early 2000s nostalgia with shimmering metallic accents and playful, retro styles.', ''),
 ('style-0006', 'Dark Academia', 'Dive into scholarly elegance with tweed and vintage pieces.', 'dress.jpg'),
 ('style-0007', 'Old Money', 'Elevate your look with timeless sophistication and classic silhouettes.', 'dress.jpg'),
 ('style-0008', 'Alt', 'Express your individuality with edgy punk and grunge influences.', 'dress.jpg'),
@@ -537,25 +551,37 @@ CREATE TABLE `style_box` (
   `style_id` varchar(10) DEFAULT NULL,
   `style_box_description` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT 229.00,
-  `reviews` varchar(255) DEFAULT NULL
+  `reviews` varchar(255) DEFAULT NULL,
+  `stock_unit` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `style_box`
 --
 
-INSERT INTO `style_box` (`style_box_id`, `style_id`, `style_box_description`, `price`, `reviews`) VALUES
-('box-000019', 'style-0001', 'Embrace the charm of countryside living with Cottagecore fashion. Floral prints, flowing dresses, and rustic details create a whimsical and nostalgic look inspired by nature and traditional craftsmanship.', 229.00, NULL),
-('box-000020', 'style-0002', 'Channel elegance and femininity with Coquette fashion. Lace, bows, and delicate fabrics evoke a romantic and playful aesthetic, perfect for those who embrace their flirtatious side.', 229.00, NULL),
-('box-000021', 'style-0003', 'Explore the darker side of kawaii with Gothic Lolita fashion. Victorian-inspired dresses and doll-like accessories create a striking and elegant look that\'s both gothic and cute.', 229.00, NULL),
-('box-000022', 'style-0004', 'Make a statement with Streetwear fashion. Bold graphics, casual silhouettes, and urban-inspired designs reflect the energy and creativity of city life, perfect for those who love to stand out.', 229.00, NULL),
-('box-000023', 'style-0005', 'Embrace nostalgia with Y2K fashion. Low-rise jeans, metallic accents, and futuristic designs capture the spirit of the early 2000s, offering a playful and eclectic style for the modern era.', 229.00, NULL),
-('box-000024', 'style-0006', 'Dive into the world of academia with Dark Academia fashion. Tweed blazers, turtleneck sweaters, and vintage-inspired pieces create a moody and scholarly look that\'s both intellectual and stylish.', 229.00, NULL),
-('box-000025', 'style-0007', 'Elevate your wardrobe with Old Money fashion. Tailored suits, classic accessories, and timeless silhouettes exude elegance and sophistication, perfect for those with a taste for luxury.', 229.00, NULL),
-('box-000026', 'style-0008', 'Express your individuality with Alt fashion. Punk, goth, and grunge influences combine for a non-conformist style that\'s bold, edgy, and unapologetically unique.', 229.00, NULL),
-('box-000027', 'style-0009', 'Embrace bohemian vibes with Indie fashion. Vintage finds, eclectic prints, and handmade accessories create a laid-back and carefree look that\'s effortlessly cool.', 229.00, NULL),
-('box-000028', 'style-0010', 'Reach for the stars with Star Girl fashion. Celestial prints, metallic accents, and futuristic designs capture the magic of the cosmos, offering a dreamy and ethereal style for stargazers and dreamers alike.', 229.00, NULL),
-('box-000073', 'style-0068', 'Random box for mystery stuffs', 229.00, 'Nice box, got good items out of it.');
+INSERT INTO `style_box` (`style_box_id`, `style_id`, `style_box_description`, `price`, `reviews`, `stock_unit`) VALUES
+('box-000019', 'style-0001', 'Embrace the charm of countryside living with Cottagecore fashion. Floral prints, flowing dresses, and rustic details create a whimsical and nostalgic look inspired by nature and traditional craftsmanship.', 229.00, NULL, '126'),
+('box-000020', 'style-0002', 'Channel elegance and femininity with Coquette fashion. Lace, bows, and delicate fabrics evoke a romantic and playful aesthetic, perfect for those who embrace their flirtatious side.', 209.00, NULL, '6'),
+('box-000021', 'style-0003', 'Explore the darker side of kawaii with Gothic Lolita fashion. Victorian-inspired dresses and doll-like accessories create a striking and elegant look that\'s both gothic and cute.', 229.00, NULL, '4'),
+('box-000022', 'style-0004', 'Make a statement with Streetwear fashion. Bold graphics, casual silhouettes, and urban-inspired designs reflect the energy and creativity of city life, perfect for those who love to stand out.', 229.00, NULL, NULL),
+('box-000023', 'style-0005', 'Embrace nostalgia with Y2K fashion. Low-rise jeans, metallic accents, and futuristic designs capture the spirit of the early 2000s, offering a playful and eclectic style for the modern era.', 229.00, NULL, NULL),
+('box-000024', 'style-0006', 'Dive into the world of academia with Dark Academia fashion. Tweed blazers, turtleneck sweaters, and vintage-inspired pieces create a moody and scholarly look that\'s both intellectual and stylish.', 229.00, NULL, NULL),
+('box-000025', 'style-0007', 'Elevate your wardrobe with Old Money fashion. Tailored suits, classic accessories, and timeless silhouettes exude elegance and sophistication, perfect for those with a taste for luxury.', 229.00, NULL, NULL),
+('box-000026', 'style-0008', 'Express your individuality with Alt fashion. Punk, goth, and grunge influences combine for a non-conformist style that\'s bold, edgy, and unapologetically unique.', 229.00, NULL, NULL),
+('box-000027', 'style-0009', 'Embrace bohemian vibes with Indie fashion. Vintage finds, eclectic prints, and handmade accessories create a laid-back and carefree look that\'s effortlessly cool.', 229.00, NULL, NULL),
+('box-000028', 'style-0010', 'Reach for the stars with Star Girl fashion. Celestial prints, metallic accents, and futuristic designs capture the magic of the cosmos, offering a dreamy and ethereal style for stargazers and dreamers alike.', 229.00, NULL, NULL),
+('box-000073', 'style-0068', 'Random box for mystery stuffs', 229.00, 'Nice box, got good items out of it.', NULL),
+('box-000283', 'style-0001', NULL, 234.00, NULL, '34'),
+('box-000284', 'style-0005', NULL, 1234.00, NULL, '6'),
+('box-000287', 'style-0005', NULL, 1239.00, NULL, '23456'),
+('box-000288', 'style-0005', NULL, 2314.00, NULL, '56'),
+('box-000292', 'style-0001', NULL, 123.00, NULL, '5'),
+('box-000293', 'style-0001', NULL, 44444.00, NULL, '44444'),
+('box-000294', 'style-0001', NULL, 44444.00, NULL, '44444'),
+('box-000295', 'style-0005', NULL, 333333.00, NULL, '333333'),
+('box-000296', 'style-0005', NULL, 333333.00, NULL, '333333'),
+('box-000297', 'style-0005', NULL, 333333.00, NULL, '333333'),
+('box-000298', 'style-0005', NULL, 12345678.00, NULL, '9999');
 
 --
 -- Triggers `style_box`
@@ -746,86 +772,87 @@ CREATE TABLE `transaction` (
   `shipping_fee` decimal(10,2) DEFAULT 100.00,
   `total_items` int(11) DEFAULT NULL,
   `total_price` decimal(10,2) DEFAULT NULL,
-  `payment_method` enum('Cash on Delivery','GCash') DEFAULT NULL
+  `payment_method` enum('Cash on Delivery','GCash') DEFAULT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`transaction_id`, `order_number`, `timestamp`, `user_id`, `shipping_fee`, `total_items`, `total_price`, `payment_method`) VALUES
-(1, 'ORD-20240511-0000080', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL),
-(2, 'ORD-20240511-0000082', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL),
-(3, 'ORD-20240511-0000084', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL),
-(4, 'ORD-20240511-0000086', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL),
-(5, 'ORD-20240511-0000088', '2024-05-11 11:43:32', 'user-00049', 100.00, 0, 100.00, 'Cash on Delivery'),
-(6, 'ORD-20240511-0000090', '2024-05-11 11:50:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(7, 'ORD-20240511-0000092', '2024-05-11 11:50:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(8, 'ORD-20240511-0000094', '2024-05-11 11:54:24', 'user-00049', 100.00, 1, 329.00, NULL),
-(9, 'ORD-20240511-0000096', '2024-05-11 11:54:24', 'user-00049', 100.00, 1, 329.00, NULL),
-(10, 'ORD-20240511-0000098', '2024-05-11 11:55:12', 'user-00049', 100.00, 1, 329.00, NULL),
-(11, 'ORD-20240511-0000100', '2024-05-11 11:55:12', 'user-00049', 100.00, 1, 329.00, NULL),
-(12, 'ORD-20240511-0000102', '2024-05-11 11:57:40', 'user-00049', 100.00, 1, 329.00, NULL),
-(13, 'ORD-20240511-0000104', '2024-05-11 11:57:40', 'user-00049', 100.00, 1, 329.00, NULL),
-(14, 'ORD-20240511-0000106', '2024-05-11 12:00:54', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(15, 'ORD-20240511-0000108', '2024-05-11 12:00:54', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(16, 'ORD-20240511-0000110', '2024-05-11 12:01:41', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(17, 'ORD-20240511-0000112', '2024-05-11 12:01:41', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(18, 'ORD-20240511-0000114', '2024-05-11 12:04:50', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(19, 'ORD-20240511-0000116', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(20, 'ORD-20240511-0000118', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(21, 'ORD-20240511-0000120', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(22, 'ORD-20240511-0000122', '2024-05-11 12:09:26', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(23, 'ORD-20240511-0000124', '2024-05-11 12:09:26', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(24, 'ORD-20240511-0000126', '2024-05-11 12:23:06', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(25, 'ORD-20240511-0000128', '2024-05-11 12:23:06', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(26, 'ORD-20240511-0000130', '2024-05-11 12:24:38', 'user-00049', 100.00, 1, 329.00, NULL),
-(27, 'ORD-20240511-0000132', '2024-05-11 12:24:38', 'user-00049', 100.00, 1, 329.00, NULL),
-(28, 'ORD-20240511-0000134', '2024-05-11 12:25:53', 'user-00049', 100.00, 1, 329.00, NULL),
-(29, 'ORD-20240511-0000136', '2024-05-11 12:25:53', 'user-00049', 100.00, 1, 329.00, NULL),
-(30, 'ORD-20240511-0000138', '2024-05-11 12:26:42', 'user-00049', 100.00, 1, 329.00, NULL),
-(31, 'ORD-20240511-0000140', '2024-05-11 12:26:42', 'user-00049', 100.00, 1, 329.00, NULL),
-(32, 'ORD-20240511-0000142', '2024-05-11 12:27:39', 'user-00049', 100.00, 3, 787.00, 'GCash'),
-(33, 'ORD-20240511-0000144', '2024-05-11 12:27:39', 'user-00049', 100.00, 3, 787.00, 'GCash'),
-(34, 'ORD-20240511-0000146', '2024-05-11 12:28:50', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery'),
-(35, 'ORD-20240511-0000148', '2024-05-11 12:31:00', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(36, 'ORD-20240511-0000150', '2024-05-11 12:45:35', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery'),
-(37, 'ORD-20240511-0000152', '2024-05-11 12:47:01', 'user-00049', 100.00, 3, 787.00, 'GCash'),
-(38, 'ORD-20240511-0000154', '2024-05-11 12:49:32', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(39, 'ORD-20240511-0000156', '2024-05-11 12:52:39', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(40, 'ORD-20240511-0000158', '2024-05-11 12:53:43', 'user-00049', 100.00, 1, 329.00, NULL),
-(41, 'ORD-20240511-0000160', '2024-05-11 12:58:26', 'user-00049', 100.00, 1, 329.00, NULL),
-(42, 'ORD-20240511-0000162', '2024-05-11 12:58:26', 'user-00049', 100.00, 1, 329.00, NULL),
-(43, 'ORD-20240511-0000164', '2024-05-11 14:51:49', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(44, 'ORD-20240511-0000166', '2024-05-11 14:53:51', 'user-00049', 100.00, 2, 558.00, 'GCash'),
-(47, 'ORD-20240511-0000170', '2024-05-11 15:50:55', 'user-00049', 100.00, 1, 229.00, 'GCash'),
-(48, 'ORD-20240511-0000172', '2024-05-11 15:51:58', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery'),
-(49, 'ORD-20240511-0000174', '2024-05-11 15:53:32', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(50, 'ORD-20240512-0000176', '2024-05-11 16:05:32', 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(51, 'ORD-20240512-0000178', '2024-05-11 16:06:16', 'user-00049', 100.00, 6, 2161.00, 'Cash on Delivery'),
-(52, 'ORD-20240512-0000180', '2024-05-11 16:07:29', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery'),
-(53, 'ORD-20240512-0000186', NULL, 'user-00049', 100.00, 3, 1245.00, 'GCash'),
-(54, 'ORD-20240512-0000187', NULL, 'user-00049', 100.00, 0, 100.00, 'GCash'),
-(55, 'ORD-20240512-0000188', NULL, 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery'),
-(56, 'ORD-20240512-0000189', NULL, 'user-00049', 100.00, 3, 787.00, 'GCash'),
-(57, 'ORD-20240512-0000190', NULL, 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(58, 'ORD-20240512-0000191', NULL, 'user-00049', 100.00, 1, 329.00, 'GCash'),
-(59, 'ORD-20240512-0000192', NULL, 'user-00049', 100.00, 3, 787.00, 'GCash'),
-(60, 'ORD-20240512-0000193', NULL, 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(61, 'ORD-20240512-0000194', NULL, 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery'),
-(62, 'ORD-20240512-0000195', NULL, 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(63, 'ORD-20240512-0000196', '2024-05-11 17:00:55', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(64, 'ORD-20240512-0000197', '2024-05-11 18:12:04', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(65, 'ORD-20240512-0000198', '2024-05-11 18:12:28', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(66, 'ORD-20240512-0000199', '2024-05-11 18:18:58', 'user-00049', 100.00, 1, 329.00, NULL),
-(67, 'ORD-20240512-0000200', '2024-05-11 18:23:48', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery'),
-(68, 'ORD-20240512-0000201', '2024-05-11 18:24:01', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery'),
-(69, 'ORD-20240512-0000202', '2024-05-11 18:52:13', 'user-00049', 100.00, 1, 329.00, NULL),
-(70, 'ORD-20240512-0000203', '2024-05-11 18:53:29', 'user-00049', 100.00, 2, 897.00, 'Cash on Delivery'),
-(71, 'ORD-20240513-0000213', '2024-05-12 17:55:48', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(72, 'ORD-20240513-0000214', '2024-05-12 17:55:48', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(73, 'ORD-20240513-0000215', '2024-05-12 17:56:36', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery'),
-(74, 'ORD-20240514-0000278', '2024-05-14 15:20:46', NULL, 100.00, 1, 179.00, 'Cash on Delivery');
+INSERT INTO `transaction` (`transaction_id`, `order_number`, `timestamp`, `user_id`, `shipping_fee`, `total_items`, `total_price`, `payment_method`, `status`) VALUES
+(1, 'ORD-20240511-0000080', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL, ''),
+(2, 'ORD-20240511-0000082', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL, ''),
+(3, 'ORD-20240511-0000084', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL, ''),
+(4, 'ORD-20240511-0000086', '2024-05-11 11:41:38', 'user-00049', 100.00, 3, 1703.00, NULL, ''),
+(5, 'ORD-20240511-0000088', '2024-05-11 11:43:32', 'user-00049', 100.00, 0, 100.00, 'Cash on Delivery', ''),
+(6, 'ORD-20240511-0000090', '2024-05-11 11:50:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(7, 'ORD-20240511-0000092', '2024-05-11 11:50:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(8, 'ORD-20240511-0000094', '2024-05-11 11:54:24', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(9, 'ORD-20240511-0000096', '2024-05-11 11:54:24', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(10, 'ORD-20240511-0000098', '2024-05-11 11:55:12', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(11, 'ORD-20240511-0000100', '2024-05-11 11:55:12', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(12, 'ORD-20240511-0000102', '2024-05-11 11:57:40', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(13, 'ORD-20240511-0000104', '2024-05-11 11:57:40', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(14, 'ORD-20240511-0000106', '2024-05-11 12:00:54', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(15, 'ORD-20240511-0000108', '2024-05-11 12:00:54', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(16, 'ORD-20240511-0000110', '2024-05-11 12:01:41', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(17, 'ORD-20240511-0000112', '2024-05-11 12:01:41', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(18, 'ORD-20240511-0000114', '2024-05-11 12:04:50', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(19, 'ORD-20240511-0000116', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(20, 'ORD-20240511-0000118', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(21, 'ORD-20240511-0000120', '2024-05-11 12:08:07', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(22, 'ORD-20240511-0000122', '2024-05-11 12:09:26', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(23, 'ORD-20240511-0000124', '2024-05-11 12:09:26', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(24, 'ORD-20240511-0000126', '2024-05-11 12:23:06', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(25, 'ORD-20240511-0000128', '2024-05-11 12:23:06', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(26, 'ORD-20240511-0000130', '2024-05-11 12:24:38', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(27, 'ORD-20240511-0000132', '2024-05-11 12:24:38', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(28, 'ORD-20240511-0000134', '2024-05-11 12:25:53', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(29, 'ORD-20240511-0000136', '2024-05-11 12:25:53', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(30, 'ORD-20240511-0000138', '2024-05-11 12:26:42', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(31, 'ORD-20240511-0000140', '2024-05-11 12:26:42', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(32, 'ORD-20240511-0000142', '2024-05-11 12:27:39', 'user-00049', 100.00, 3, 787.00, 'GCash', ''),
+(33, 'ORD-20240511-0000144', '2024-05-11 12:27:39', 'user-00049', 100.00, 3, 787.00, 'GCash', ''),
+(34, 'ORD-20240511-0000146', '2024-05-11 12:28:50', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery', ''),
+(35, 'ORD-20240511-0000148', '2024-05-11 12:31:00', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(36, 'ORD-20240511-0000150', '2024-05-11 12:45:35', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery', ''),
+(37, 'ORD-20240511-0000152', '2024-05-11 12:47:01', 'user-00049', 100.00, 3, 787.00, 'GCash', ''),
+(38, 'ORD-20240511-0000154', '2024-05-11 12:49:32', 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(39, 'ORD-20240511-0000156', '2024-05-11 12:52:39', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(40, 'ORD-20240511-0000158', '2024-05-11 12:53:43', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(41, 'ORD-20240511-0000160', '2024-05-11 12:58:26', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(42, 'ORD-20240511-0000162', '2024-05-11 12:58:26', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(43, 'ORD-20240511-0000164', '2024-05-11 14:51:49', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(44, 'ORD-20240511-0000166', '2024-05-11 14:53:51', 'user-00049', 100.00, 2, 558.00, 'GCash', ''),
+(47, 'ORD-20240511-0000170', '2024-05-11 15:50:55', 'user-00049', 100.00, 1, 229.00, 'GCash', 'Packed'),
+(48, 'ORD-20240511-0000172', '2024-05-11 15:51:58', 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery', ''),
+(49, 'ORD-20240511-0000174', '2024-05-11 15:53:32', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', 'Packed'),
+(50, 'ORD-20240512-0000176', '2024-05-11 16:05:32', 'user-00049', 100.00, 1, 329.00, 'GCash', 'Pending'),
+(51, 'ORD-20240512-0000178', '2024-05-11 16:06:16', 'user-00049', 100.00, 6, 2161.00, 'Cash on Delivery', 'Shipped'),
+(52, 'ORD-20240512-0000180', '2024-05-11 16:07:29', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery', ''),
+(53, 'ORD-20240512-0000186', NULL, 'user-00049', 100.00, 3, 1245.00, 'GCash', ''),
+(54, 'ORD-20240512-0000187', NULL, 'user-00049', 100.00, 0, 100.00, 'GCash', ''),
+(55, 'ORD-20240512-0000188', NULL, 'user-00049', 100.00, 2, 558.00, 'Cash on Delivery', ''),
+(56, 'ORD-20240512-0000189', NULL, 'user-00049', 100.00, 3, 787.00, 'GCash', ''),
+(57, 'ORD-20240512-0000190', NULL, 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(58, 'ORD-20240512-0000191', NULL, 'user-00049', 100.00, 1, 329.00, 'GCash', ''),
+(59, 'ORD-20240512-0000192', NULL, 'user-00049', 100.00, 3, 787.00, 'GCash', ''),
+(60, 'ORD-20240512-0000193', NULL, 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(61, 'ORD-20240512-0000194', NULL, 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery', 'Shipped'),
+(62, 'ORD-20240512-0000195', NULL, 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(63, 'ORD-20240512-0000196', '2024-05-11 17:00:55', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(64, 'ORD-20240512-0000197', '2024-05-11 18:12:04', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(65, 'ORD-20240512-0000198', '2024-05-11 18:12:28', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(66, 'ORD-20240512-0000199', '2024-05-11 18:18:58', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(67, 'ORD-20240512-0000200', '2024-05-11 18:23:48', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery', ''),
+(68, 'ORD-20240512-0000201', '2024-05-11 18:24:01', 'user-00049', 100.00, 3, 787.00, 'Cash on Delivery', ''),
+(69, 'ORD-20240512-0000202', '2024-05-11 18:52:13', 'user-00049', 100.00, 1, 329.00, NULL, ''),
+(70, 'ORD-20240512-0000203', '2024-05-11 18:53:29', 'user-00049', 100.00, 2, 897.00, 'Cash on Delivery', ''),
+(71, 'ORD-20240513-0000213', '2024-05-12 17:55:48', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(72, 'ORD-20240513-0000214', '2024-05-12 17:55:48', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(73, 'ORD-20240513-0000215', '2024-05-12 17:56:36', 'user-00049', 100.00, 1, 329.00, 'Cash on Delivery', ''),
+(74, 'ORD-20240514-0000278', '2024-05-14 15:20:46', NULL, 100.00, 1, 179.00, 'Cash on Delivery', '');
 
 --
 -- Triggers `transaction`
@@ -863,38 +890,40 @@ CREATE TABLE `user` (
   `last_name` varchar(50) DEFAULT NULL,
   `phone_number` varchar(15) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `registration_date` datetime DEFAULT current_timestamp()
+  `registration_date` datetime DEFAULT current_timestamp(),
+  `status` enum('active','inactive') DEFAULT 'active',
+  `salt` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `first_name`, `last_name`, `phone_number`, `address`, `registration_date`) VALUES
-('tran-00041', 'dee', 'danielamarzan.cantillo@bicol-u.edu.ph', '25d55ad283aa400af464c76d713c07ad', 'Daniela', 'Cantillo', '09483340088', 'Zone 8 Labnig, Malinao, Albay', '2024-05-08 02:06:18'),
-('tran-00043', 'yes102', 'jessai@live.nl', 'e807f1fcf82d132f9bb018ca6738a19f', 'Jessai', 'Schonewille', '09483340088', 'BS Rollepaal, Dedemsvaart, Netherlands', '2024-05-08 02:06:18'),
-('user-00047', 'daniela', 'danielait@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'Dee', 'Cantillo', '09483340088', 'Daraga, Albay', '2024-05-08 02:08:53'),
-('user-00049', 'MInzy', 'minzy19@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'Minzy', 'Mendez', '09135902471', 'Zone 4 Bantayan, Tabaco City, Albay', '2024-05-08 02:59:40'),
-('user-00218', 'jkLover', 'jk@gmail.com', '65d671ec9787b32cfb7e33188be32ff7', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 00:39:43'),
-('user-00225', 'guest', 'bacodav896@syinxun.com', '3dbe00a167653a1aaee01d93e77e730e', 'Alex', 'aaaaa', '09175883947', 'Naga City', '2024-05-14 03:05:37'),
-('user-00228', 'vsefw', 'bacoda96@syinxun.com', 'e219b56989281a7846dd836161d7a2bd', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:13:54'),
-('user-00231', 'guest3', 'fqwefe@fefe', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:15:44'),
-('user-00234', 'qwqr', 'jajedov542@syinxun.comqqw', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:22:06'),
-('user-00237', 'rwtw', 'jajedov542@syinxun.comqwqw', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:23:45'),
-('user-00240', 'jkLovereq', 'jajedov542@syinxun.com', '5313177b0a99d3daa526882318c05df6', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:24:21'),
-('user-00243', 'guestrrw', 'jajedov542@syinxun.comqwqe', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:26:35'),
-('user-00246', 'guestqertth', 'josephbewq@3e', '7481678c27f3968c568fbfbd9f70ffa0', 'Alex', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:31:07'),
-('user-00249', 'wrrw', 'jajedov542@syinxun.comeqet3', '155c14766f5e35129b251aef1885a911', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:32:34'),
-('user-00252', 'greagr', 'jajedov542@syinxun.com1tht', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:37:58'),
-('user-00255', 'guestrw', 'bacodav896@syinxun.comqwrqwr', '04cac0540031555d7096726f9b3c0779', 'Alex', 'Jeon', '09175883947', 'Naga City', '2024-05-14 03:41:01'),
-('user-00258', 'guest42', 'fefe@fefe', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:47:00'),
-('user-00261', '4141re', 'bacodav896@syinxun.com1441', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:52:22'),
-('user-00264', '2021-9576-3142727', 'josephrio@gregreg', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:53:23'),
-('user-00267', 'guest243te', 'jajedov542@syinxun.com4114', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:56:52'),
-('user-00270', '53refr', 'josephriosa12@gmail.com31', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Riosa', '09175883947', 'Tabaco City', '2024-05-14 04:28:38'),
-('user-00273', 'guestg34h5tenh', 'josephriosa12@gmail.com', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Naga City', '2024-05-14 04:43:13'),
-('user-00276', 'eqewvf', 'fefe@fefeqwq', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Riosa', '09175883947', 'Tabaco City', '2024-05-14 04:51:10'),
-('user-00280', '4q3reg', 'jajedov542@syinxun.com3r2', '054e3b308708370ea029dc2ebd1646c498d59d7203c9e1a44cf0484df98e581a', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-15 13:58:00');
+INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `first_name`, `last_name`, `phone_number`, `address`, `registration_date`, `status`, `salt`) VALUES
+('tran-00041', 'dee', 'danielamarzan.cantillo@bicol-u.edu.ph', '25d55ad283aa400af464c76d713c07ad', 'Daniela', 'Cantillo', '09483340088', 'Zone 8 Labnig, Malinao, Albay', '2024-05-08 02:06:18', 'active', NULL),
+('tran-00043', 'yes102', 'jessai@live.nl', 'e807f1fcf82d132f9bb018ca6738a19f', 'Jessai', 'Schonewille', '09483340088', 'BS Rollepaal, Dedemsvaart, Netherlands', '2024-05-08 02:06:18', 'inactive', NULL),
+('user-00047', 'daniela', 'danielait@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'Dee', 'Cantillo', '09483340088', 'Daraga, Albay', '2024-05-08 02:08:53', 'inactive', NULL),
+('user-00049', 'MInzy', 'minzy19@gmail.com', 'e807f1fcf82d132f9bb018ca6738a19f', 'Minzy', 'Mendez', '09135902471', 'Zone 4 Bantayan, Tabaco City, Albay', '2024-05-08 02:59:40', 'inactive', NULL),
+('user-00218', 'jkLover', 'jk@gmail.com', '65d671ec9787b32cfb7e33188be32ff7', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 00:39:43', 'inactive', NULL),
+('user-00225', 'guest', 'bacodav896@syinxun.com', '3dbe00a167653a1aaee01d93e77e730e', 'Alex', 'aaaaa', '09175883947', 'Naga City', '2024-05-14 03:05:37', 'inactive', NULL),
+('user-00228', 'vsefw', 'bacoda96@syinxun.com', 'e219b56989281a7846dd836161d7a2bd', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:13:54', 'inactive', NULL),
+('user-00231', 'guest3', 'fqwefe@fefe', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:15:44', 'active', NULL),
+('user-00234', 'qwqr', 'jajedov542@syinxun.comqqw', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:22:06', 'active', NULL),
+('user-00237', 'rwtw', 'jajedov542@syinxun.comqwqw', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:23:45', 'active', NULL),
+('user-00240', 'jkLovereq', 'jajedov542@syinxun.com', '5313177b0a99d3daa526882318c05df6', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:24:21', 'active', NULL),
+('user-00243', 'guestrrw', 'jajedov542@syinxun.comqwqe', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:26:35', 'active', NULL),
+('user-00246', 'guestqertth', 'josephbewq@3e', '7481678c27f3968c568fbfbd9f70ffa0', 'Alex', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:31:07', 'active', NULL),
+('user-00249', 'wrrw', 'jajedov542@syinxun.comeqet3', '155c14766f5e35129b251aef1885a911', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:32:34', 'active', NULL),
+('user-00252', 'greagr', 'jajedov542@syinxun.com1tht', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jungkook', '09175883947', 'Seoul', '2024-05-14 03:37:58', 'active', NULL),
+('user-00255', 'guestrw', 'bacodav896@syinxun.comqwrqwr', '04cac0540031555d7096726f9b3c0779', 'Alex', 'Jeon', '09175883947', 'Naga City', '2024-05-14 03:41:01', 'active', NULL),
+('user-00258', 'guest42', 'fefe@fefe', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:47:00', 'active', NULL),
+('user-00261', '4141re', 'bacodav896@syinxun.com1441', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:52:22', 'active', NULL),
+('user-00264', '2021-9576-3142727', 'josephrio@gregreg', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Seoul', '2024-05-14 03:53:23', 'active', NULL),
+('user-00267', 'guest243te', 'jajedov542@syinxun.com4114', '8ce87b8ec346ff4c80635f667d1592ae', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-14 03:56:52', 'active', NULL),
+('user-00270', '53refr', 'josephriosa12@gmail.com31', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Riosa', '09175883947', 'Tabaco City', '2024-05-14 04:28:38', 'active', NULL),
+('user-00273', 'guestg34h5tenh', 'josephriosa12@gmail.com', '8ce87b8ec346ff4c80635f667d1592ae', 'Alex', 'Jeon', '09175883947', 'Naga City', '2024-05-14 04:43:13', 'active', NULL),
+('user-00276', 'eqewvf', 'fefe@fefeqwq', '8ce87b8ec346ff4c80635f667d1592ae', 'Jeon', 'Riosa', '09175883947', 'Tabaco City', '2024-05-14 04:51:10', 'active', NULL),
+('user-00280', '4q3reg', 'jajedov542@syinxun.com3r2', '054e3b308708370ea029dc2ebd1646c498d59d7203c9e1a44cf0484df98e581a', 'Joseph', 'Jeon', '09175883947', 'Tabaco City', '2024-05-15 13:58:00', 'active', NULL);
 
 --
 -- Triggers `user`
@@ -1244,7 +1273,7 @@ ALTER TABLE `security_questions`
 -- AUTO_INCREMENT for table `sequence`
 --
 ALTER TABLE `sequence`
-  MODIFY `sequence_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
+  MODIFY `sequence_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
 
 --
 -- AUTO_INCREMENT for table `transaction`
